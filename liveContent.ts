@@ -1,14 +1,28 @@
-import {Entity, Column, PrimaryGeneratedColumn, OneToMany, OneToOne, JoinColumn} from "typeorm";
-import { EntityBase } from "../../smartup_framework/framework/entities/enitityBase";
+import { EntityBase } from "framework/entities/EntityBase";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Section } from "./section";
+import { UserMeetingProvider } from "./userMeetingProvider";
 
-@Entity('liveContents')
-export class LiveContents extends EntityBase{
+@Entity("live_contents")
+export class LiveContent extends EntityBase{
 
-    constructor(id?: number) {
-        super();
-        // this.Id = id==null?0: id;
-    }
+  // @PrimaryGeneratedColumn() channel_id: number;
+  @Column({ name: 'utl',nullable:true })
+  url: string;
 
-    // @PrimaryGeneratedColumn()
-    // Id: number;
+  @Column({ name: 'content_details',nullable:true, type:"json" })
+  contentDetails: string;
+
+  @ManyToOne((type) => Section, section => section.liveContents, {
+    onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+  })
+  @JoinColumn({ name: 'section_id' })
+  liveContentId: Section;
+
+  @ManyToOne((type) => UserMeetingProvider, userMeetingProvider => userMeetingProvider.liveContents, {
+    onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+  })
+  @JoinColumn({ name: 'user_meeting_provider_id' })
+  userMeetingProviderId: UserMeetingProvider;
+
 }

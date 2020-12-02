@@ -1,56 +1,34 @@
-import {Entity, Column, PrimaryGeneratedColumn, OneToMany, OneToOne, JoinColumn, ManyToOne, EntitySchema} from "typeorm";
-import { Content } from "./contents";
-import { UserInfo } from "./userInfo";
-import { Customer } from "./customer";
-import { EntityBase } from "../../smartup_framework/framework/entities/enitityBase";
-
+import { EntityBase } from "framework/entities/EntityBase";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { ChannelBillPlan } from "./channelBillPlan";
+import { Group } from "./group";
 
 @Entity("channels")
 export class Channel extends EntityBase{
 
-    constructor(id?: number, channelName?: string, channelType?:string, isexternal?:boolean,baby?:string) {
-        // this.Id = id==null?0: id;
-        super();
-        if(channelName!=null)
-            this.ChannelName = channelName;
-        else
-            this.ChannelName = '';
+  // @PrimaryGeneratedColumn() channel_id: number;
+  @Column({ name: 'title',nullable:true })
+  title: string;
 
-        if(channelType!=null)
-            this.ChannelType = channelType;
-        else
-            this.ChannelType = '';
+  @Column({ name: 'channel_type',nullable:true })
+  channelType: string;
 
-        if(isexternal!=null)
-            this.isExternal = isexternal;
-        else
-            this.isExternal = false;
-            if(baby!=null)
-            this.baby = baby;
-        else
-            this.baby = '';
-        // this.user = new UserInfo();
-        // this.Content = new Content();
-    }
+  @Column({ name: 'channel_details',nullable:true, type:"json" })
+  channelDetails: string;
 
-    // @PrimaryGeneratedColumn()
-    // Id: number;
+  @ManyToOne((type) => Group, group => group.channels, {
+    onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+  })
+  @JoinColumn({ name: 'group_id' })
+  groupId: Group;
 
-    @Column({name:"channel_name",nullable:true})
-    ChannelName: string;
+  @OneToMany((type) => ChannelBillPlan, channelBillPlan => channelBillPlan.channelId, {
+		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+  })
+  channelBillPlans: ChannelBillPlan[]
+  // @OneToMany((type) => Group, (customerRepresentatives) => customerRepresentatives.customer, {
+	// 	onDelete: 'CASCADE'
+	// })
 
-    @Column({name:"channel_type",nullable:true})
-    ChannelType: string;
-
-    @Column({name:"baby",nullable:true})
-    baby: string;
-
-    @Column({name:"is_external",nullable:true})
-    isExternal: boolean;
-
-    @ManyToOne(type => UserInfo, user => user.channels)
-    user?: UserInfo;
-
-    @ManyToOne(type=>Customer, customer=>customer.channel)
-    customer?:Customer;
+  
 }

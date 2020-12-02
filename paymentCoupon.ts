@@ -1,11 +1,10 @@
 import { EntityBase } from "framework/entities/EntityBase";
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany,OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { ChannelBillPlan } from "./channelBillPlan";
 import { Group } from "./group";
-import { SubscriptionOrder } from "./subscriptionOrder";
 
-@Entity("payment")
-export class Payment extends EntityBase{
+@Entity("payment_coupon")
+export class PaymentCoupon extends EntityBase{
 
   // @PrimaryGeneratedColumn() channel_id: number;
   @Column({ name: 'title',nullable:true })
@@ -27,10 +26,9 @@ export class Payment extends EntityBase{
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   channelBillPlans: ChannelBillPlan[]
- 
-  @OneToOne(() => SubscriptionOrder)
-  @JoinColumn({name: 'subscription_order_id'})
-  subscriptionOrderId: SubscriptionOrder;
+  // @OneToMany((type) => Group, (customerRepresentatives) => customerRepresentatives.customer, {
+	// 	onDelete: 'CASCADE'
+	// })
 
   
 }

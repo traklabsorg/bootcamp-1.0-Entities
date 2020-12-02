@@ -1,15 +1,33 @@
-import {Entity, Column, PrimaryGeneratedColumn, OneToMany, OneToOne, JoinColumn} from "typeorm";
-import { EntityBase } from "../../smartup_framework/framework/entities/enitityBase";
+import { EntityBase } from "framework/entities/EntityBase";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { DdEntity } from "./ddEntities"
+import { BusinessEventSubscriber } from "./businessEventSubscriber";
 
+@Entity("business_events")
+export class BusinessEvent extends EntityBase{
 
-@Entity('businessEvents')
-export class BusinessEvents extends EntityBase{
+  // @PrimaryGeneratedColumn() channel_id: number;
+  @Column({ name: 'event_name',nullable:true })
+  eventName: string;
 
-    constructor(id?: number) {
-        super();
-        // this.Id = id==null?0: id;
-    }
+  @Column({ name: 'event_details',nullable:true, type: "json" })
+  eventDetails: string;
 
-    // @PrimaryGeneratedColumn()
-    // Id: number;
+  @Column({ name: 'operation_name',nullable:true })
+  operationName: string;
+
+  @Column({ name: 'public_details',nullable:true, type:"json" })
+  publicDetails: string;
+
+  @ManyToOne((type) => DdEntity, ddEntities => ddEntities.businessEventId, {
+    onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+  })
+  @JoinColumn({ name: 'dd_entity_id' })
+  ddEntityId: DdEntity;
+
+  @OneToMany((type) => BusinessEventSubscriber, businessEventSubscriber => businessEventSubscriber.evenetId, {
+		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+  })
+  businessEventSubscriber: BusinessEventSubscriber[];
+
 }

@@ -1,39 +1,43 @@
-import {Entity, Column, PrimaryGeneratedColumn, OneToMany, OneToOne, JoinColumn,CreateDateColumn, Table} from "typeorm";
-import { EntityBase } from "../../smartup_framework/framework/entities/enitityBase";
+// import { EntityBase } from "framework/entities/EntityBase";
+// import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity({name:"coupons"})
-export class Coupon extends EntityBase{
 
-    constructor(id?: number) {
-        super();
-        // this.Id = id==null?0: id;
-        this.ValidTill = new Date();
-        this.UsageCount = 0;
-        this.Description = "";
-        this.MaxUsage = 0;
-        this.Status = "";
-        this.CouponType = "Discount";
-        this.CouponCode = "abcd";
-    }
+// @Entity("coupons")
+// export class Coupon extends EntityBase{
 
-    @CreateDateColumn({name:'valid_till',nullable:true, type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })
-    ValidTill: Date;
+//   // @Column({ name: 'tenant_id',nullable:true })
+//   // tenantId: number;
+//   @PrimaryGeneratedColumn() coupon_id: number;
 
-    @Column({name:"usage_count",nullable:true})
-    UsageCount : number;
+//   @Column({ name: 'valid_till',nullable:true, type: "timestamp"})
+//   validTill: Date;
 
-    @Column({name:"description",nullable:true})
-    Description : string;
+//   @Column({ name: 'usage_count',nullable:true })
+//   usageCount: number;
 
-    @Column({name:"max_usage",nullable:true})
-    MaxUsage : number; 
+//   @Column({ name: 'group_details',nullable:true, type:"json" })
+//   groupDetails: string;
 
-    @Column({name:"status",nullable:true})
-    Status: string;
+//   @ManyToOne((type) => Tenant, tenants => tenants.groups, {
+//     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+//   })
+//   @JoinColumn({ name: 'tenant_id' })
+//   tenantId: Tenant;
 
-    @Column({name:"coupon_type",nullable:true})
-    CouponType: string;
+//   @OneToMany((type) => Channel, (channels) => channels.groupId, {
+// 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+//   })
+//   channels: Channel[]
+  
+//   @OneToMany((type) => GroupUser, (groupUser) => groupUser.groupId, {
+// 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+//   })
+//   groupUsers : GroupUser[]
 
-    @Column({name:"coupon_code",nullable:true})
-    CouponCode: string;
-}
+
+//   // @OneToMany((type) => Group, (customerRepresentatives) => customerRepresentatives.customer, {
+// 	// 	onDelete: 'CASCADE'
+// 	// })
+
+  
+// }

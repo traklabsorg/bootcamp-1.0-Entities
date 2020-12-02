@@ -2,12 +2,12 @@ import { EntityBase } from "framework/entities/EntityBase";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany,OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { ChannelBillPlan } from "./channelBillPlan";
 import { Group } from "./group";
-import { SubscriptionOrder } from "./subscriptionOrder";
+import { Payment } from "./payment";
+import { Subscription } from "./subscription";
 
-@Entity("payment")
-export class Payment extends EntityBase{
+@Entity("subscription_order")
+export class SubscriptionOrder extends EntityBase{
 
-  // @PrimaryGeneratedColumn() channel_id: number;
   @Column({ name: 'title',nullable:true })
   title: string;
 
@@ -17,20 +17,18 @@ export class Payment extends EntityBase{
   @Column({ name: 'channel_details',nullable:true, type:"json" })
   channelDetails: string;
 
-  @ManyToOne((type) => Group, group => group.channels, {
+  @ManyToOne((type) => Subscription, subscription => subscription.subscriptionOrders, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  @JoinColumn({ name: 'group_id' })
-  groupId: Group;
+  @JoinColumn({ name: 'subscription_id' })
+  subscriptionId: Subscription;
 
   @OneToMany((type) => ChannelBillPlan, channelBillPlan => channelBillPlan.channelId, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  channelBillPlans: ChannelBillPlan[]
- 
-  @OneToOne(() => SubscriptionOrder)
-  @JoinColumn({name: 'subscription_order_id'})
-  subscriptionOrderId: SubscriptionOrder;
+  channelBillPlans: ChannelBillPlan[];
 
-  
+//   @OneToOne(() => Payment)
+//   @JoinColumn()
+//   payment: Payment;
 }

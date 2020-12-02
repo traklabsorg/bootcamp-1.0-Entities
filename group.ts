@@ -1,48 +1,44 @@
-import {Entity, Column, PrimaryGeneratedColumn, OneToMany, OneToOne, JoinColumn} from "typeorm";
-import { EntityBase } from "../../smartup_framework/framework/entities/enitityBase";
-import { GroupUsers } from "./groupUser";
+//Done
 
+import { EntityBase } from "framework/entities/EntityBase";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Channel } from "./channel";
+import { Community } from "./communities";
+import { GroupUser } from "./groupUser";
+import { Tenant } from "./tenant";
 
-@Entity('groups')
+@Entity("groups")
 export class Group extends EntityBase{
 
-    constructor(id?: number, groupName?:string, groupDescription?:string, isActive?:boolean) {
-        super();
-        // this.Id = id==null?0: id;
-        if(groupName!=null)
-            this.GroupName = groupName;
-        else
-            this.GroupName = "";
+  @Column({ name: 'group_name',nullable:true })
+  groupName: string;
 
-        if(groupDescription!=null)
-            this.GroupDescription = groupDescription;
-        else
-            this.GroupDescription = "";
+  @Column({ name: 'group_type',nullable:true })
+  groupType: string;
 
-        if(isActive!=null)
-            this.isActive = isActive;
-        else
-            this.isActive = false;
-    }
+  @Column({ name: 'group_details',nullable:true, type:"json" })
+  groupDetails: string;
 
-    // @PrimaryGeneratedColumn()
-    // Id: number;
-    @Column({name:"group_name",nullable:true})
-    GroupName: string;
+  @ManyToOne((type) => Tenant, tenants => tenants.groups, {
+    onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+  })
+  @JoinColumn({ name: 'tenant_id' })
+  tenantId: Tenant;
 
-    @Column({name:"group_description",nullable:true})
-    GroupDescription: string;
+  @OneToMany((type) => Channel, (channels) => channels.groupId, {
+		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+  })
+  channels: Channel[]
+  
+  @OneToMany((type) => GroupUser, (groupUser) => groupUser.groupId, {
+		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+  })
+  groupUsers : GroupUser[]
 
-    @Column("bytea",{nullable:false})
-    GroupImage?: Buffer;
-
-    @Column({name:"is_active",nullable:true})
-    isActive:boolean;
-
-    @OneToMany(type=>GroupUsers,group_user=>group_user.group)
-    group_users?:GroupUsers[];
+  @ManyToOne((type) => Community, community => community.groups, {
+    onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+  })
+  @JoinColumn({ name: 'community_id' })
+  communityId : Community;
+  
 }
-
-
-// @Column("blob", { nullable: true })
-// content: Blob;
