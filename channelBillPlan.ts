@@ -1,4 +1,4 @@
-import { EntityBase } from "framework/entities/EntityBase";
+import { EntityBase } from "../platform-3.0-Framework/entities/EntityBase";
 import { Subscription } from "./subscription";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Channel } from "./channel";

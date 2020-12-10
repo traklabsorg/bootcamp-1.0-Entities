@@ -1,4 +1,4 @@
-import { EntityBase } from "framework/entities/EntityBase";
+import { EntityBase } from "../platform-3.0-Framework/entities/EntityBase";
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { LessonData } from "./lessonData";
 import { User } from "./user";

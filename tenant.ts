@@ -1,5 +1,5 @@
 //Done
-import { EntityBase } from "framework/entities/EntityBase";
+import { EntityBase } from "../platform-3.0-Framework/entities/EntityBase";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Group } from "./group";
 import { User } from "./user";
