@@ -1,13 +1,12 @@
-import { EntityBase } from "../platform-3.0-Framework/entities/EntityBase";
+import { EntityBase } from "framework/entities/EntityBase";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { ChannelBillPlan } from "./channelBillPlan";
 import { Group } from "./group";
+import { LiveContent } from "./liveContent";
 import { User } from "./user";
 
 @Entity("community")
 export class Community extends EntityBase{
 
-  // @PrimaryGeneratedColumn() channel_id: number;
   @Column({ name: 'community_name',nullable:true })
   communityName: string;
 
@@ -28,9 +27,14 @@ export class Community extends EntityBase{
     })
     users: User[]
 
-  @OneToMany((type) => Group, group => group.communityId, {
+  @OneToMany((type) => Group, group => group.tenant, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  groups: Group[]
+  groups: Group[];
+
+  @OneToMany((type) => LiveContent, liveContent => liveContent.communityId, {
+		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+  })
+  liveContents: LiveContent[];
   
 }

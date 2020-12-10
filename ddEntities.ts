@@ -1,4 +1,4 @@
-import { EntityBase } from "../platform-3.0-Framework/entities/EntityBase";
+import { EntityBase } from "framework/entities/EntityBase";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { BusinessEvent } from "./businessEvent";
 import { BusinessEventSubscriber } from "./businessEventSubscriber";
@@ -8,21 +8,20 @@ import { Group } from "./group";
 @Entity("ddEntity")
 export class DdEntity extends EntityBase{
 
-  // @PrimaryGeneratedColumn() channel_id: number;
   @Column({ name: 'entity_name',nullable:true })
   title: string;
 
   @Column({ name: 'entity_details',nullable:true, type:"json" })
   entityDetails: string;
 
-  @OneToMany((type) => BusinessEvent, businessEvent => businessEvent.ddEntityId, {
-		onDelete: 'CASCADE',onUpdate: 'RESTRICT', name: 'business_event_id'
+  @OneToMany((type) => BusinessEvent, businessEvent => businessEvent.ddEntity, {
+		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  businessEventId: BusinessEvent[];
+  businessEvents: BusinessEvent[];
   
-  @OneToMany((type) => BusinessEventSubscriber, businessEventSubscriber => businessEventSubscriber.ddEntityId, {
+  @OneToMany((type) => BusinessEventSubscriber, businessEventSubscriber => businessEventSubscriber.ddEntity, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  businessEventSubscriber: BusinessEventSubscriber[];
+  businessEventSubscribers: BusinessEventSubscriber[];
 
 }

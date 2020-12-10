@@ -1,31 +1,26 @@
-import { EntityBase } from "../platform-3.0-Framework/entities/EntityBase";
+import { EntityBase } from "framework/entities/EntityBase";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Channel } from "./channel";
-import { ChannelBillPlan } from "./channelBillPlan";
-import { Content } from "./content";
-import { Group } from "./group";
-import { LiveContent } from "./liveContent";
+import { Lesson } from "./lesson";
 
 @Entity("section")
 export class Section extends EntityBase{
 
-  // @PrimaryGeneratedColumn() channel_id: number;
   @Column({ name: 'title',nullable:true })
   title: string;
 
-  @ManyToOne((type) => Channel, channel => channel.channelId, {
+  @Column({ name: 'channel_id',nullable:false})
+  channelId: number;
+
+  @ManyToOne((type) => Channel, channel => channel.sections, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'channel_id' })
-  channelId: Channel;
+  channel: Channel;
 
-  @OneToMany((type) => Content, content => content.contentId, {
+  @OneToMany((type) => Lesson, lesson => lesson.section, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  contents: Content[];
+  lessons: Lesson[];
 
-  @OneToMany((type) => LiveContent, liveContent => liveContent.liveContentId, {
-    onDelete: 'CASCADE',onUpdate: 'RESTRICT'
-  })
-  liveContents: LiveContent[];
 }

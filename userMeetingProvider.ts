@@ -1,20 +1,23 @@
-import { EntityBase } from "../platform-3.0-Framework/entities/EntityBase";
+import { EntityBase } from "framework/entities/EntityBase";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { LiveContent } from "./liveContent";
 import { MeetingProvider } from "./meetingProvider";
 import { User } from "./user";
 import { UserMeetingProviders_Meeting } from "./userMeetingProviders_meeting";
 
-@Entity("user_meeting_providers")
+@Entity("userMeetingProviders")
 export class UserMeetingProvider extends EntityBase {
 
-  // @Column({ name: 'user_id', nullable: true })
-  // userId: number;
+  @Column({ name: 'meeting_provider_details',nullable:true, type:"json" })
+  Details: string;
 
+  @Column({ name: 'user_id',nullable:false})
+  userId: number;
 
-  // @PrimaryGeneratedColumn() user_meeting_provider_id: number;
-
+  @Column({ name: 'meeting_provider_id',nullable:false})
+  meetingProviderId: number;
   
-  @OneToMany((type) => UserMeetingProviders_Meeting, userMeetingProvider_meeting => userMeetingProvider_meeting.userMeetingProviderId, {
+  @OneToMany((type) => UserMeetingProviders_Meeting, userMeetingProvider_meeting => userMeetingProvider_meeting.userMeetingProvider, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   userMeetingProvider_meetings: UserMeetingProviders_Meeting[]
@@ -23,13 +26,16 @@ export class UserMeetingProvider extends EntityBase {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'user_id' })
-  userId: User;
-
+  user: User;
 
   @ManyToOne((type) => MeetingProvider, meetingProviders => meetingProviders.userMeetingProviders, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'meeting_provider_id' })
-  meetingProviderId: MeetingProvider;
+  meetingProvider: MeetingProvider;
 
+  @OneToMany((type) => LiveContent, liveContent => liveContent.userMeetingProvider, {
+		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+  })
+  liveContents: LiveContent[]
 }

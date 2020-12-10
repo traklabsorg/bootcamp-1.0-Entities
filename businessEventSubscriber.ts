@@ -1,35 +1,43 @@
-import { EntityBase } from "../platform-3.0-Framework/entities/EntityBase";
+import { EntityBase } from "framework/entities/EntityBase";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { BusinessEvent } from "./businessEvent";
 import { DdEntity } from "./ddEntities";
 import { ServiceConsumer } from "./serviceConsumer";
 
 
-@Entity("business_event_subscribers")
+@Entity("businessEventSubscribers")
 export class BusinessEventSubscriber extends EntityBase{
 
-  // @PrimaryGeneratedColumn() channel_id: number;
   @Column({ name: 'operation_name',nullable:true })
   operationName: string;
 
   @Column({ name: 'subscription_details',nullable:true, type:"json" })
   subscriptionDetails: string;
 
-  @ManyToOne((type) => BusinessEvent, businessEvent => businessEvent.businessEventSubscriber, {
+  @Column({ name: 'business_event_id',nullable:true })
+  businessEventId: number;
+
+  @Column({ name: 'subscriber_dd_entity_id',nullable:true })
+  subscriberDdEntityId: number;
+
+  @Column({ name: 'service_consumer_id',nullable:true })
+  serviceConsumerId: number;
+
+  @ManyToOne((type) => BusinessEvent, businessEvent => businessEvent.businessEventSubscribers, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'business_event_id' })
-  eventId: BusinessEvent;
+  event: BusinessEvent;
 
-  @ManyToOne((type) => DdEntity, ddEntities => ddEntities.businessEventId, {
+  @ManyToOne((type) => DdEntity, ddEntities => ddEntities.businessEventSubscribers, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'subscriber_dd_entity_id' })
-  ddEntityId: DdEntity;
+  ddEntity: DdEntity;
   
-  @ManyToOne((type) => ServiceConsumer, serviceConsumer => serviceConsumer.businessEventSubscriber, {
+  @ManyToOne((type) => ServiceConsumer, serviceConsumer => serviceConsumer.businessEventSubscribers, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'service_consumer_id' })
-  serviceConsumerId: ServiceConsumer;
+  serviceConsumer: ServiceConsumer;
 }

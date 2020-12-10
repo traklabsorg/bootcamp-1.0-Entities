@@ -1,19 +1,33 @@
-import { EntityBase } from "../platform-3.0-Framework/entities/EntityBase";
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { EntityBase } from "framework/entities/EntityBase";
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "./user";
-import { UserMeetingProvider } from "./userMeetingProvider";
+import { UserMeetingProviders_Meeting } from "./userMeetingProviders_meeting";
 
-@Entity("enrolled_meetings")
+@Entity("enrolledMeetings")
 export class EnrolledMeetings extends EntityBase{
+
+  @Column({ name: 'enrolled_on', nullable:true, default : Date.now(), type: "timestamp"})
+  enrolledOn: Date;
+
+  @Column({name: 'user_id', nullable:true})
+  userId: number;
+
+  @Column({name: 'host_user_id', nullable:true})
+  hostUserId: number;
 
   @ManyToOne((type) => User, user => user.enrolledMeetings, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'user_id' })
-  userId: User;
+  user: User;
 
-  @OneToMany((type) => UserMeetingProvider, userMeetingProvider => userMeetingProvider.enrolledMeetingId, {
-		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+  @ManyToOne((type) => User, user => user.enrolledMeetings, {
+    onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  userMeetingProviderId: UserMeetingProvider[]
+  @JoinColumn({ name: 'host_user_id' })
+  hostUser: User;
+
+  @OneToOne(() => UserMeetingProviders_Meeting)
+  @JoinColumn({name: 'user_meeting_provider_meeting_id'})
+  userMeetingProviderMeetingId: UserMeetingProviders_Meeting;
 }

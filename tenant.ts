@@ -1,5 +1,5 @@
 //Done
-import { EntityBase } from "../platform-3.0-Framework/entities/EntityBase";
+import { EntityBase } from "framework/entities/EntityBase";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Group } from "./group";
 import { User } from "./user";
@@ -33,9 +33,9 @@ export class Tenant extends EntityBase{
   })
   groups: Group[]
   
-  @OneToMany((type) => User, (user) => user.tenantId, {
-		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
-  })
-  users : User[]
+  // @OneToMany((type) => User, (user) => user.tenantId, {
+	// 	onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+  // })
+  // users : User[]
 
 }

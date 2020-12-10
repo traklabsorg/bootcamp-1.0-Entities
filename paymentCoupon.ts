@@ -1,34 +1,32 @@
-import { EntityBase } from "../platform-3.0-Framework/entities/EntityBase";
+import { EntityBase } from "framework/entities/EntityBase";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { ChannelBillPlan } from "./channelBillPlan";
+import { Coupon } from "./coupon";
 import { Group } from "./group";
+import { Payment } from "./payment";
 
-@Entity("payment_coupon")
+@Entity("paymentCoupon")
 export class PaymentCoupon extends EntityBase{
 
-  // @PrimaryGeneratedColumn() channel_id: number;
-  @Column({ name: 'title',nullable:true })
-  title: string;
+  @Column({ name: 'payment_coupon_details',nullable:true, type:"json" })
+  paymentCouponDetails: string;
 
-  @Column({ name: 'channel_type',nullable:true })
-  channelType: string;
+  @Column({name: 'payment_id', nullable:true})
+  paymentId: number;
 
-  @Column({ name: 'channel_details',nullable:true, type:"json" })
-  channelDetails: string;
+  @Column({name: 'coupon_id', nullable:true})
+  couponId: number;
 
-  @ManyToOne((type) => Group, group => group.channels, {
+  @ManyToOne((type) => Coupon, coupon => coupon.paymentCoupons, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  @JoinColumn({ name: 'group_id' })
-  groupId: Group;
+  @JoinColumn({ name: 'coupon_id' })
+  coupon: Coupon;
 
-  @OneToMany((type) => ChannelBillPlan, channelBillPlan => channelBillPlan.channelId, {
-		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+  @ManyToOne((type) => Payment, payment => payment.paymentCoupons, {
+    onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  channelBillPlans: ChannelBillPlan[]
-  // @OneToMany((type) => Group, (customerRepresentatives) => customerRepresentatives.customer, {
-	// 	onDelete: 'CASCADE'
-	// })
+  @JoinColumn({ name: 'payment_id' })
+  payment: Payment;
 
-  
 }

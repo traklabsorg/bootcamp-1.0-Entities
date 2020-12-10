@@ -1,12 +1,12 @@
-import { EntityBase } from "../platform-3.0-Framework/entities/EntityBase";
+import { EntityBase } from "framework/entities/EntityBase";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { ChannelBillPlan } from "./channelBillPlan";
 import { Group } from "./group";
+import { Section } from "./section";
 
 @Entity("channels")
 export class Channel extends EntityBase{
 
-  // @PrimaryGeneratedColumn() channel_id: number;
   @Column({ name: 'title',nullable:true })
   title: string;
 
@@ -16,19 +16,23 @@ export class Channel extends EntityBase{
   @Column({ name: 'channel_details',nullable:true, type:"json" })
   channelDetails: string;
 
+  @Column({ name: 'group_id',nullable:true })
+  groupId: number;
+
   @ManyToOne((type) => Group, group => group.channels, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'group_id' })
-  groupId: Group;
+  group: Group;
 
-  @OneToMany((type) => ChannelBillPlan, channelBillPlan => channelBillPlan.channelId, {
+  @OneToMany((type) => ChannelBillPlan, channelBillPlan => channelBillPlan.channel, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   channelBillPlans: ChannelBillPlan[]
-  // @OneToMany((type) => Group, (customerRepresentatives) => customerRepresentatives.customer, {
-	// 	onDelete: 'CASCADE'
-	// })
 
-  
+  @OneToMany((type) => Section, section => section.channel, {
+		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+  })
+  sections: Section[]
+
 }

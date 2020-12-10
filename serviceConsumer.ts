@@ -1,11 +1,10 @@
-import { EntityBase } from "../platform-3.0-Framework/entities/EntityBase";
+import { EntityBase } from "framework/entities/EntityBase";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { BusinessEventSubscriber } from "./businessEventSubscriber";
 
-@Entity("business_events")
+@Entity("serviceConsumer")
 export class ServiceConsumer extends EntityBase{
 
-  // @PrimaryGeneratedColumn() channel_id: number;
   @Column({ name: 'service_consumer_name',nullable:true })
   eventName: string;
 
@@ -15,9 +14,9 @@ export class ServiceConsumer extends EntityBase{
   @Column({ name: 'service_consumer_details',nullable:true, type:"json" })
   serviceConsumerDetails: string;
 
-  @OneToMany((type) => BusinessEventSubscriber, businessEventSubscriber => businessEventSubscriber.serviceConsumerId, {
+  @OneToMany((type) => BusinessEventSubscriber, businessEventSubscriber => businessEventSubscriber.serviceConsumer, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  businessEventSubscriber: BusinessEventSubscriber[];
+  businessEventSubscribers: BusinessEventSubscriber[];
 
 }

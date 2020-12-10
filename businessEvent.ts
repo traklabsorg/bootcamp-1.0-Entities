@@ -1,12 +1,11 @@
-import { EntityBase } from "../platform-3.0-Framework/entities/EntityBase";
+import { EntityBase } from "framework/entities/EntityBase";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { DdEntity } from "./ddEntities"
 import { BusinessEventSubscriber } from "./businessEventSubscriber";
 
-@Entity("business_events")
+@Entity("businessEvents")
 export class BusinessEvent extends EntityBase{
 
-  // @PrimaryGeneratedColumn() channel_id: number;
   @Column({ name: 'event_name',nullable:true })
   eventName: string;
 
@@ -19,15 +18,18 @@ export class BusinessEvent extends EntityBase{
   @Column({ name: 'public_details',nullable:true, type:"json" })
   publicDetails: string;
 
-  @ManyToOne((type) => DdEntity, ddEntities => ddEntities.businessEventId, {
+  @Column({ name: 'dd_entity_id',nullable:true })
+  ddEntityId: number;
+
+  @ManyToOne((type) => DdEntity, ddEntities => ddEntities.businessEvents, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'dd_entity_id' })
-  ddEntityId: DdEntity;
+  ddEntity: DdEntity;
 
-  @OneToMany((type) => BusinessEventSubscriber, businessEventSubscriber => businessEventSubscriber.evenetId, {
+  @OneToMany((type) => BusinessEventSubscriber, businessEventSubscriber => businessEventSubscriber.event, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  businessEventSubscriber: BusinessEventSubscriber[];
+  businessEventSubscribers: BusinessEventSubscriber[];
 
 }

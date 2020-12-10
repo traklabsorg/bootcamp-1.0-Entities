@@ -1,18 +1,11 @@
-import { EntityBase } from "../platform-3.0-Framework/entities/EntityBase";
+import { EntityBase } from "framework/entities/EntityBase";
+import { Subscription } from "./subscription";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Channel } from "./channel";
 import { Plan } from "./plan";
 
-@Entity("channel_bill_plans")
+@Entity("channelBillPlans")
 export class ChannelBillPlan extends EntityBase{
-
-  // @Column({ name: 'channel_id',nullable:true })
-  // channelId: number;
-
-  // @Column({ name: 'plan_id',nullable:true })
-  // planId: number;
-
-  // @PrimaryGeneratedColumn() channel_bill_plan_id: number;
   
   @Column({ name: 'additional_details',nullable:true, type:"json" })
   additionalDetails: string;
@@ -23,25 +16,30 @@ export class ChannelBillPlan extends EntityBase{
   @Column({ name: 'plan_start_date', nullable:true, type: "timestamp"})
   planStartDate: Date;
 
-  @Column({ name: 'subscription_end_date', nullable:true, type: "timestamp"})
+  @Column({ name: 'plan_end_date', nullable:true, type: "timestamp"})
   planEndDate: Date;
+
+  @Column({name: 'channel_id', nullable:true})
+  channelId:number;
+
+  @Column({name: 'plan_id', nullable:true})
+  planId:number;
 
   @ManyToOne((type) => Channel, channels => channels.channelBillPlans, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'channel_id' })
-  //@Column({name:'channel_id'})
-  channelId: Channel;
+  channel: Channel;
 
   @ManyToOne((type) => Plan, plans => plans.channelBillPlans, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'plan_id' })
-  planId: Plan;
+  plan: Plan;
 
-  // @OneToMany((type) => Group, (customerRepresentatives) => customerRepresentatives.customer, {
-	// 	onDelete: 'CASCADE'
-	// })
+  @OneToMany((type) => Subscription, subscription => subscription.channelBillPlan, {
+		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+  })
+  subscriptions: Subscription[];
 
-  
 }

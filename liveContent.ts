@@ -1,28 +1,42 @@
-import { EntityBase } from "../platform-3.0-Framework/entities/EntityBase";
+import { EntityBase } from "framework/entities/EntityBase";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Section } from "./section";
+import { Community } from "./communities";
+import { LiveContentUser } from "./liveContentUser";
+import { User } from "./user";
 import { UserMeetingProvider } from "./userMeetingProvider";
 
-@Entity("live_contents")
+@Entity("liveContents")
 export class LiveContent extends EntityBase{
 
-  // @PrimaryGeneratedColumn() channel_id: number;
-  @Column({ name: 'utl',nullable:true })
+  @Column({ name: 'url',nullable:true })
   url: string;
 
   @Column({ name: 'content_details',nullable:true, type:"json" })
   contentDetails: string;
 
-  @ManyToOne((type) => Section, section => section.liveContents, {
+  @Column({ name: 'start_date',nullable:true, default : Date.now() })
+  startDate: Date;
+
+  @Column({ name: 'end_date',nullable:true, default : Date.now() })
+  endDate: Date;
+
+  @Column({ name: 'user_meeting_provider_id',nullable:false})
+  userMeetingProviderId: number;
+
+  @ManyToOne((type) => Community, community => community.liveContents, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  @JoinColumn({ name: 'section_id' })
-  liveContentId: Section;
+  @JoinColumn({ name: 'community_id' })
+  communityId: Community;
 
   @ManyToOne((type) => UserMeetingProvider, userMeetingProvider => userMeetingProvider.liveContents, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'user_meeting_provider_id' })
-  userMeetingProviderId: UserMeetingProvider;
+  userMeetingProvider: UserMeetingProvider;
 
+  @OneToMany((type) => LiveContentUser, liveContentUser => liveContentUser.liveContent, {
+		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+  })
+  liveContentUsers: LiveContentUser[]
 }
