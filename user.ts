@@ -22,7 +22,7 @@ export class User extends EntityBase {
   @Column({ name: 'group_details', nullable: true , type:"json" })
   groupDetails: string;
 
-  @Column({ name: 'last_Logon_date_time', nullable:true, default : Date.now(), type: "timestamp"})
+  @Column({ name: 'last_Logon_date_time', nullable:true, type: "timestamp"})
   lastLogonDateTime: Date;
 
   @OneToMany((type) => LiveContentUser, liveContentUser => liveContentUser.user, {

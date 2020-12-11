@@ -11,7 +11,8 @@ export class SubscriptionOrder extends EntityBase{
   @Column({ name: 'order_status',nullable:true })
   orderStatus: string;
 
-  @Column({ name: 'order_date_time',nullable:true, default : Date.now() })
+  // @Column({ name: 'order_date_time',nullable:true })
+  @Column({ name: 'order_date_time',nullable:true})
   orderDateTime: Date;
 
   @Column({ name: 'order_details',nullable:true, type:"json" })

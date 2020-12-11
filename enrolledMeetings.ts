@@ -6,7 +6,7 @@ import { UserMeetingProviders_Meeting } from "./userMeetingProviders_meeting";
 @Entity("enrolledMeetings")
 export class EnrolledMeetings extends EntityBase{
 
-  @Column({ name: 'enrolled_on', nullable:true, default : Date.now(), type: "timestamp"})
+  @Column({ name: 'enrolled_on', nullable:true, type: "timestamp"})
   enrolledOn: Date;
 
   @Column({name: 'user_id', nullable:true})

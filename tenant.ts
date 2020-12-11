@@ -28,7 +28,7 @@ export class Tenant extends EntityBase{
   @Column({ name: 'subscription_end_date', nullable:true, type: "timestamp"})
   subsciptionEndDate: Date;
 
-  @OneToMany((type) => Group, (group) => group.tenantId, {
+  @OneToMany((type) => Group, (group) => group.communityId, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   groups: Group[]

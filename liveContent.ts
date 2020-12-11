@@ -14,10 +14,10 @@ export class LiveContent extends EntityBase{
   @Column({ name: 'content_details',nullable:true, type:"json" })
   contentDetails: string;
 
-  @Column({ name: 'start_date',nullable:true, default : Date.now() })
+  @Column({ name: 'start_date',nullable:true })
   startDate: Date;
 
-  @Column({ name: 'end_date',nullable:true, default : Date.now() })
+  @Column({ name: 'end_date',nullable:true })
   endDate: Date;
 
   @Column({ name: 'user_meeting_provider_id',nullable:false})

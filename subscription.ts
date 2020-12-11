@@ -18,13 +18,13 @@ export class Subscription extends EntityBase{
   @Column({ name: 'subscription_type',nullable:true })
   subscriptionType: string;
 
-  @Column({ name: 'start_date_time',nullable:true, default : Date.now() })
+  @Column({ name: 'start_date_time',nullable:true })
   startDateTime: Date;
 
-  @Column({ name: 'end_date_time',nullable:true, default : Date.now() })
+  @Column({ name: 'end_date_time',nullable:true })
   endDateTime: Date;
 
-  @Column({ name: 'transaction_date_time',nullable:true, default : Date.now() })
+  @Column({ name: 'transaction_date_time',nullable:true })
   transactionDateTime: Date;
 
   @Column({name: 'channel_bill_plan_id', nullable:true})

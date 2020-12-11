@@ -22,8 +22,8 @@ export class Group extends EntityBase{
   @Column({ name: 'group_payer_type',nullable:true})
   groupPayerType: string;
 
-  @Column({name: 'tenant_id', nullable:true})
-  tenantId: number;
+  @Column({name: 'community_id', nullable:false})
+  communityId: number;
 
   @OneToMany((type) => Channel, (channels) => channels.group, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
@@ -38,7 +38,7 @@ export class Group extends EntityBase{
   @ManyToOne((type) => Community, community => community.groups, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  @JoinColumn({ name: 'tenant_id' })
-  tenant : Community;
-  
+  @JoinColumn({ name: 'community_id' })
+  community : Community;    // 
+  // rhega...integer
 }

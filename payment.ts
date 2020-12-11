@@ -18,7 +18,7 @@ export class Payment extends EntityBase{
   @Column({ name: 'payment_amount',nullable:true })
   paymentAmount: number;
 
-  @Column({ name: 'transaction_date_time',nullable:true, default: Date.now(), type: "timestamp" })
+  @Column({ name: 'transaction_date_time',nullable:true, type: "timestamp" })
   transactionDateTime: Date;
 
   @Column({ name: 'payment_details',nullable:true, type: "json" })

@@ -4,7 +4,7 @@ import { Group } from "./group";
 import { LiveContent } from "./liveContent";
 import { User } from "./user";
 
-@Entity("community")
+@Entity("communities")
 export class Community extends EntityBase{
 
   @Column({ name: 'community_name',nullable:true })
@@ -16,10 +16,10 @@ export class Community extends EntityBase{
   @Column({ name: 'payment_info',nullable:true})
   paymentInfo: string;
 
-  @Column({ name: 'subscription_start_date',nullable:true, default : Date.now() })
+  @Column({ name: 'subscription_start_date',nullable:true })
   subscriptionStartDate: Date;
 
-  @Column({ name: 'subscription_end_date',nullable:true, default : Date.now() })
+  @Column({ name: 'subscription_end_date',nullable:true })
   subscriptionEndDate: Date;
 
   @OneToMany((type) => User, user => user.communityId, {
@@ -27,7 +27,7 @@ export class Community extends EntityBase{
     })
     users: User[]
 
-  @OneToMany((type) => Group, group => group.tenant, {
+  @OneToMany((type) => Group, group => group.community, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   groups: Group[];
