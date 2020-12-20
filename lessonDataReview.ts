@@ -13,10 +13,10 @@ export class LessonDataReview extends EntityBase{
   @Column({ name: 'review_status', nullable: true })
   reviewStatus: string;
 
-  @Column({ name: 'user_id', nullable: true })
+  @Column({ name: 'user_id', nullable: false })
   userId: number;
 
-  @Column({ name: 'section_id', nullable: true })
+  @Column({ name: 'section_id', nullable: false })
   sectionId: number;
 
   @ManyToOne((type) => User, user => user.lessonDataReviews, {

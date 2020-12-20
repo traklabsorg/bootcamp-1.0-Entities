@@ -3,6 +3,9 @@ import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColum
 import { ChannelBillPlan } from "./channelBillPlan";
 import { Group } from "./group";
 import { Section } from "./section";
+import { Community } from "./communities";
+import { LessonDataUser } from "./lessonDataUser";
+import { ChannelGroup } from "./ChannelGroup";
 
 @Entity("channels")
 export class Channel extends EntityBase{
@@ -13,17 +16,26 @@ export class Channel extends EntityBase{
   @Column({ name: 'channel_type',nullable:true })
   channelType: string;
 
+  @Column({ name: 'is_draft',nullable:true })
+  isDraft: string;
+
   @Column({ name: 'channel_details',nullable:true, type:"json" })
   channelDetails: string;
 
-  @Column({ name: 'group_id',nullable:true })
-  groupId: number;
+  @Column({ name: 'community_id',nullable:false })
+  tenantId: number;
 
-  @ManyToOne((type) => Group, group => group.channels, {
+  @ManyToOne((type) => Community, community => community.channels, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  @JoinColumn({ name: 'group_id' })
-  group: Group;
+  @JoinColumn({ name: 'community_id' })
+  community:Community;
+
+  // @ManyToOne((type) => Group, group => group.channels, {
+  //   onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+  // })
+  // @JoinColumn({ name: 'group_id' })
+  // group: Group;
 
   @OneToMany((type) => ChannelBillPlan, channelBillPlan => channelBillPlan.channel, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
@@ -34,5 +46,15 @@ export class Channel extends EntityBase{
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   sections: Section[]
+
+  @OneToMany((type) => LessonDataUser, lessonDataUser => lessonDataUser.channel, {
+		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+  })
+  lessonDataUsers: LessonDataUser[]
+
+  @OneToMany((type) => ChannelGroup, channelGroup => channelGroup.channel, {
+		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+  })
+  channelGroups: ChannelGroup[]
 
 }

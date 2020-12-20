@@ -18,13 +18,13 @@ export class Subscription extends EntityBase{
   @Column({ name: 'subscription_type',nullable:true })
   subscriptionType: string;
 
-  @Column({ name: 'start_date_time',nullable:true })
+  @Column({ name: 'start_date_time',nullable:true, type:"timestamp with time zone" })
   startDateTime: Date;
 
-  @Column({ name: 'end_date_time',nullable:true })
+  @Column({ name: 'end_date_time',nullable:true,type:"timestamp with time zone" })
   endDateTime: Date;
 
-  @Column({ name: 'transaction_date_time',nullable:true })
+  @Column({ name: 'transaction_date_time',nullable:true,type:"timestamp with time zone" })
   transactionDateTime: Date;
 
   @Column({name: 'channel_bill_plan_id', nullable:true})

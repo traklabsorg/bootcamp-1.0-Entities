@@ -8,7 +8,7 @@ import { UserMeetingProvider } from "./userMeetingProvider";
 @Entity("liveContentUsers")
 export class LiveContentUser extends EntityBase{
 
-  @Column({ name: 'additonal_details',nullable:true, type:"json" })
+  @Column({ name: 'additional_details',nullable:true, type:"json" })
   additionalDetails: string;
 
   @Column({ name: 'live_content_id',nullable:false})

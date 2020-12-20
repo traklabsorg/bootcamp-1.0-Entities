@@ -3,12 +3,16 @@ import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColum
 import { Group } from "./group";
 import { LiveContent } from "./liveContent";
 import { User } from "./user";
+import { Channel } from "./channel";
 
 @Entity("communities")
 export class Community extends EntityBase{
 
   @Column({ name: 'community_name',nullable:true })
   communityName: string;
+
+  @Column({ name: 'community_admin_id',nullable:true })
+  communityAdminId: number;
 
   @Column({ name: 'address',nullable:true })
   address: string;
@@ -22,19 +26,33 @@ export class Community extends EntityBase{
   @Column({ name: 'subscription_end_date',nullable:true })
   subscriptionEndDate: Date;
 
-  @OneToMany((type) => User, user => user.communityId, {
-    onDelete: 'CASCADE',onUpdate: 'RESTRICT'
-    })
-    users: User[]
+  @Column({ name: "user_quotas", nullable: true })
+  userQuotas: string;
+
+  @Column({ name: "community_additional_data", nullable: true, type: "json" })
+  communityAdditionalData: string;
+
+  @Column({ name: "community_url", nullable: true})
+  communityUrl: string;
+
+  @OneToMany((type) => User, user => user.community, {
+    onDelete: 'CASCADE', onUpdate: 'RESTRICT'
+  })
+  users: User[];
 
   @OneToMany((type) => Group, group => group.community, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   groups: Group[];
 
-  @OneToMany((type) => LiveContent, liveContent => liveContent.communityId, {
+  @OneToMany((type) => Channel, channel => channel.community, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  liveContents: LiveContent[];
+  channels: Channel[];
+
+  // @OneToMany((type) => LiveContent, liveContent => liveContent.community, {
+	// 	onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+  // })
+  // liveContents: LiveContent[];
   
 }

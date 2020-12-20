@@ -15,19 +15,22 @@ export class EnrolledMeetings extends EntityBase{
   @Column({name: 'host_user_id', nullable:true})
   hostUserId: number;
 
+  @Column({name: 'user_meeting_provider_meeting_id', nullable:false})
+  hostUsuserMeetingProviderMeetingerId: number;
+
   @ManyToOne((type) => User, user => user.enrolledMeetings, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'user_id' })
   user: User;
 
-  @ManyToOne((type) => User, user => user.enrolledMeetings, {
-    onDelete: 'CASCADE',onUpdate: 'RESTRICT'
-  })
-  @JoinColumn({ name: 'host_user_id' })
-  hostUser: User;
+  // @ManyToOne((type) => HostUser, hostUser => hostUser.enrolledMeetings, {
+  //   onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+  // })
+  // @JoinColumn({ name: 'host_user_id' })
+  // hostUser: HostUser;
 
   @OneToOne(() => UserMeetingProviders_Meeting)
   @JoinColumn({name: 'user_meeting_provider_meeting_id'})
-  userMeetingProviderMeetingId: UserMeetingProviders_Meeting;
+  userMeetingProviderMeeting: UserMeetingProviders_Meeting;
 }

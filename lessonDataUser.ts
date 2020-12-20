@@ -2,6 +2,7 @@ import { EntityBase } from "../platform-3.0-Framework/entities/EntityBase";
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { LessonData } from "./lessonData";
 import { User } from "./user";
+import { Channel } from "./channel";
 
 @Entity("lessonDataUsers")
 export class LessonDataUser extends EntityBase{
@@ -12,7 +13,7 @@ export class LessonDataUser extends EntityBase{
   @Column({ name: 'user_id',nullable:false})
   userId: number;
 
-  @Column({ name: 'meeting_provider_id',nullable:false})
+  @Column({ name: 'lesson_data_id',nullable:false})
   contentId: number;
 
   @ManyToOne((type) => User, user => user.lessonDataUsers, {
@@ -21,10 +22,16 @@ export class LessonDataUser extends EntityBase{
   @JoinColumn({ name: 'user_id' })
   user: User;
 
+  @ManyToOne((type) => Channel, channel => channel.lessonDataUsers, {
+    onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+  })
+  @JoinColumn({ name: 'channel_id' })
+  channel: Channel;
+
   @ManyToOne((type) => LessonData, lessonData => lessonData.lessonDataUsers, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  @JoinColumn({ name: 'content_id' })
-  content: LessonData;
+  @JoinColumn({ name: 'lesson_data_id' })
+  lessonData: LessonData;
 
 }

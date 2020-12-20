@@ -11,10 +11,10 @@ export class PaymentCoupon extends EntityBase{
   @Column({ name: 'payment_coupon_details',nullable:true, type:"json" })
   paymentCouponDetails: string;
 
-  @Column({name: 'payment_id', nullable:true})
+  @Column({name: 'payment_id', nullable:false})
   paymentId: number;
 
-  @Column({name: 'coupon_id', nullable:true})
+  @Column({name: 'coupon_id', nullable:false})
   couponId: number;
 
   @ManyToOne((type) => Coupon, coupon => coupon.paymentCoupons, {

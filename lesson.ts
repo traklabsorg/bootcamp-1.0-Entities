@@ -16,6 +16,16 @@ export class Lesson extends EntityBase{
   @Column({ name: 'content_details',nullable:true })
   contentDetails: string;
 
+  @Column({ name: 'sequence',nullable:true })
+  sequence: string;
+
+  @Column({ name: 'publish_date',nullable:true })
+  publishDate: string;
+
+  @Column({ name: 'is_mandatory_sequence',nullable:true })
+  isMandatorySequence: string;
+
+
   @Column({ name: 'section_id',nullable:false})
   sectionId: number;
 
@@ -28,6 +38,6 @@ export class Lesson extends EntityBase{
   @OneToMany((type) => LessonData, lessonData => lessonData.content, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  lessonData: LessonData[];
+  lessonDatas: LessonData[];
 
 }

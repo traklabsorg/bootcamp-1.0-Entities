@@ -1,6 +1,7 @@
 import { EntityBase } from "../platform-3.0-Framework/entities/EntityBase";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { UserMeetingProvider } from "./userMeetingProvider";
+import { LiveContent } from "./liveContent";
 
 @Entity("meetingProviders")
 export class MeetingProvider extends EntityBase{
@@ -14,6 +15,11 @@ export class MeetingProvider extends EntityBase{
   @OneToMany((type) => UserMeetingProvider, (userMeetingProvider) => userMeetingProvider.meetingProvider, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  userMeetingProviders : UserMeetingProvider[]
+  userMeetingProviders: UserMeetingProvider[]
+  
+  @OneToMany((type) => LiveContent, (liveContent) => liveContent.meetingProvider, {
+    onDelete: 'CASCADE', onUpdate: 'RESTRICT'
+  })
+  liveContents: LiveContent[];
 
 }

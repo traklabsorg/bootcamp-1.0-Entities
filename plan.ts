@@ -18,8 +18,8 @@ export class Plan extends EntityBase{
   planCurrency: string;
 
   @OneToMany((type) => ChannelBillPlan, channelBillPlans => channelBillPlans.plan, {
-		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+    onDelete: 'CASCADE', onUpdate: 'RESTRICT'
   })
-  channelBillPlans: ChannelBillPlan[]
+  channelBillPlans: ChannelBillPlan[];
 
 }

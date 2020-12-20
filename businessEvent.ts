@@ -27,7 +27,7 @@ export class BusinessEvent extends EntityBase{
   @JoinColumn({ name: 'dd_entity_id' })
   ddEntity: DdEntity;
 
-  @OneToMany((type) => BusinessEventSubscriber, businessEventSubscriber => businessEventSubscriber.event, {
+  @OneToMany((type) => BusinessEventSubscriber, businessEventSubscriber => businessEventSubscriber.businessEvent, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   businessEventSubscribers: BusinessEventSubscriber[];

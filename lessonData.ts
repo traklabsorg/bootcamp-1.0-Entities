@@ -12,19 +12,28 @@ export class LessonData extends EntityBase{
   @Column({ name: 'url', nullable:true})
   url: string;
 
+  @Column({ name: 'is_reviewed', nullable:true})
+  isReviewed: string;
+
+  @Column({ name: 'is_submitted', nullable:true})
+  isSubmitted: string;
+
+  @Column({ name: 'is_draft', nullable:true})
+  isDraft: string;
+
   @Column({ name: 'lesson_details',nullable:true, type:"json" })
   lessonDetails: string;
 
-  @Column({ name: 'content_id',nullable:false})
+  @Column({ name: 'lesson_id',nullable:false})
   contentId: number;
 
-  @ManyToOne((type) => Lesson, lesson => lesson.lessonData, {
+  @ManyToOne((type) => Lesson, lesson => lesson.lessonDatas, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  @JoinColumn({ name: 'content_id' })
+  @JoinColumn({ name: 'lesson_id' })
   content: Lesson;
 
-  @OneToMany((type) => LessonDataUser, lessonDataUser => lessonDataUser.content, {
+  @OneToMany((type) => LessonDataUser, lessonDataUser => lessonDataUser.lessonData, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   lessonDataUsers: LessonDataUser[]

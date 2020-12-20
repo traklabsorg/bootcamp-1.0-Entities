@@ -5,7 +5,7 @@ import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColum
 import { Channel } from "./channel";
 import { Community } from "./communities";
 import { GroupUser } from "./groupUser";
-import { Tenant } from "./tenant";
+import { ChannelGroup } from "./ChannelGroup";
 
 @Entity("groups")
 export class Group extends EntityBase{
@@ -25,10 +25,13 @@ export class Group extends EntityBase{
   @Column({name: 'community_id', nullable:false})
   communityId: number;
 
-  @OneToMany((type) => Channel, (channels) => channels.group, {
+  @Column({ name: "is_active", nullable: true })
+  isActive: string;
+
+  @OneToMany((type) => ChannelGroup, (channelGroup) => channelGroup.group, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  channels: Channel[]
+  channelGroups: ChannelGroup[]
   
   @OneToMany((type) => GroupUser, (groupUser) => groupUser.group, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
@@ -39,6 +42,6 @@ export class Group extends EntityBase{
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'community_id' })
-  community : Community;    // 
+  community : Community;    
   // rhega...integer
 }

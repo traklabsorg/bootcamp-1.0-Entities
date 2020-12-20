@@ -6,7 +6,7 @@ import { ServiceConsumer } from "./serviceConsumer";
 
 
 @Entity("businessEventSubscribers")
-export class BusinessEventSubscriber extends EntityBase{
+export class  BusinessEventSubscriber extends EntityBase{
 
   @Column({ name: 'operation_name',nullable:true })
   operationName: string;
@@ -27,7 +27,7 @@ export class BusinessEventSubscriber extends EntityBase{
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'business_event_id' })
-  event: BusinessEvent;
+  businessEvent: BusinessEvent;
 
   @ManyToOne((type) => DdEntity, ddEntities => ddEntities.businessEventSubscribers, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'

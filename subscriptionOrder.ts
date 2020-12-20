@@ -12,7 +12,7 @@ export class SubscriptionOrder extends EntityBase{
   orderStatus: string;
 
   // @Column({ name: 'order_date_time',nullable:true })
-  @Column({ name: 'order_date_time',nullable:true})
+  @Column({ name: 'order_date_time',nullable:true,type:"timestamp with time zone"})
   orderDateTime: Date;
 
   @Column({ name: 'order_details',nullable:true, type:"json" })
@@ -26,4 +26,9 @@ export class SubscriptionOrder extends EntityBase{
   })
   @JoinColumn({ name: 'subscription_id' })
   subscription: Subscription;
+
+  @OneToMany((type) => Payment, (payment) => payment.subscriptionOrder, {
+		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+  })
+  payements: Payment[]
 }

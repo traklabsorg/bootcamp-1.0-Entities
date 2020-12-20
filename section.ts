@@ -1,7 +1,8 @@
 import { EntityBase } from "../platform-3.0-Framework/entities/EntityBase";
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Channel } from "./channel";
 import { Lesson } from "./lesson";
+import { LessonDataReview } from "./lessonDataReview";
 
 @Entity("section")
 export class Section extends EntityBase{
@@ -9,8 +10,25 @@ export class Section extends EntityBase{
   @Column({ name: 'title',nullable:true })
   title: string;
 
+  @Column("text", {name:'contents', array: true ,nullable:true})
+  contents: string[];
+
+  @Column("text", {name:'live_contents', array: true ,nullable:true})
+  liveContents: string[];
+
+  @Column({ name: 'section_details',nullable:true, type:"json" })
+  sectionDetails: string;
+
+  @Column({ name: "section_type", nullable: true })
+  sectionType: string;
+
   @Column({ name: 'channel_id',nullable:false})
   channelId: number;
+
+  @OneToMany((type) => Lesson, (lessons) => lessons.section, {
+		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+  })
+  lessons: Lesson[]
 
   @ManyToOne((type) => Channel, channel => channel.sections, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
@@ -18,9 +36,10 @@ export class Section extends EntityBase{
   @JoinColumn({ name: 'channel_id' })
   channel: Channel;
 
-  @OneToMany((type) => Lesson, lesson => lesson.section, {
-		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
-  })
-  lessons: Lesson[];
+
+  @OneToOne(() => LessonDataReview)
+  @JoinColumn({name: 'lesson_data_review_id'})
+  lessonDataReview: LessonDataReview;
+
 
 }

@@ -34,8 +34,8 @@ export class UserMeetingProvider extends EntityBase {
   @JoinColumn({ name: 'meeting_provider_id' })
   meetingProvider: MeetingProvider;
 
-  @OneToMany((type) => LiveContent, liveContent => liveContent.userMeetingProvider, {
-		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
-  })
-  liveContents: LiveContent[]
+  // @OneToMany((type) => LiveContent, liveContent => liveContent.userMeetingProvider, {
+	// 	onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+  // })
+  // liveContents: LiveContent[]
 }
