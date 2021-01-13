@@ -1,11 +1,11 @@
 //Done
 
-import { EntityBase } from "../platform-3.0-Framework/entities/EntityBase";
+import { EntityBase } from "./submodules/platform-3.0-Framework/EntityBase/EntityBase";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Channel } from "./channel";
 import { Community } from "./communities";
 import { GroupUser } from "./groupUser";
-import { ChannelGroup } from "./ChannelGroup";
+import { ChannelGroup } from "./channelGroup";
 
 @Entity("groups")
 export class Group extends EntityBase{

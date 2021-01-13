@@ -1,11 +1,11 @@
-import { EntityBase } from "../platform-3.0-Framework/entities/EntityBase";
+import { EntityBase } from "./submodules/platform-3.0-Framework/EntityBase/EntityBase";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { ChannelBillPlan } from "./channelBillPlan";
 import { Coupon } from "./coupon";
 import { Group } from "./group";
 import { Payment } from "./payment";
 
-@Entity("paymentCoupon")
+@Entity("paymentCoupons")
 export class PaymentCoupon extends EntityBase{
 
   @Column({ name: 'payment_coupon_details',nullable:true, type:"json" })

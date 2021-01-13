@@ -1,9 +1,9 @@
-import { EntityBase } from "../platform-3.0-Framework/entities/EntityBase";
+import { EntityBase } from "./submodules/platform-3.0-Framework/EntityBase/EntityBase";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Lesson } from "./lesson";
 import { LessonDataUser } from "./lessonDataUser";
 
-@Entity("lessonData")
+@Entity("lessonDatas")
 export class LessonData extends EntityBase{
 
   @Column({ name: 'content_type',nullable:true })

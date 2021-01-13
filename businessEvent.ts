@@ -1,7 +1,8 @@
-import { EntityBase } from "../platform-3.0-Framework/entities/EntityBase";
+// import { EntityBase } from "./submodules/platform-3.0-Framework/EntityBase/EntityBase";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { DdEntity } from "./ddEntities"
 import { BusinessEventSubscriber } from "./businessEventSubscriber";
+import { EntityBase } from "./submodules/platform-3.0-Framework/EntityBase/EntityBase";
 
 @Entity("businessEvents")
 export class BusinessEvent extends EntityBase{

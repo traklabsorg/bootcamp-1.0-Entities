@@ -1,8 +1,8 @@
-import { EntityBase } from "../platform-3.0-Framework/entities/EntityBase";
+import { EntityBase } from "./submodules/platform-3.0-Framework/EntityBase/EntityBase";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { BusinessEventSubscriber } from "./businessEventSubscriber";
 
-@Entity("serviceConsumer")
+@Entity("serviceConsumers")
 export class ServiceConsumer extends EntityBase{
 
   @Column({ name: 'service_consumer_name',nullable:true })

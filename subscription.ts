@@ -1,9 +1,9 @@
-import { EntityBase } from "../platform-3.0-Framework/entities/EntityBase";
+import { EntityBase } from "./submodules/platform-3.0-Framework/EntityBase/EntityBase";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { ChannelBillPlan } from "./channelBillPlan";
 import { SubscriptionOrder } from "./subscriptionOrder";
 
-@Entity("subscription")
+@Entity("subscriptions")
 export class Subscription extends EntityBase{
 
   @Column({ name: 'subscription_details',nullable:true, type:"json" })

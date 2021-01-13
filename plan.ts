@@ -1,4 +1,4 @@
-import { EntityBase } from "../platform-3.0-Framework/entities/EntityBase";
+import { EntityBase } from "./submodules/platform-3.0-Framework/EntityBase/EntityBase";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { ChannelBillPlan } from "./channelBillPlan";
 

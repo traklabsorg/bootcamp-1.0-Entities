@@ -1,11 +1,11 @@
-import { EntityBase } from "../platform-3.0-Framework/entities/EntityBase";
+import { EntityBase } from "./submodules/platform-3.0-Framework/EntityBase/EntityBase";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { BusinessEvent } from "./businessEvent";
 import { BusinessEventSubscriber } from "./businessEventSubscriber";
 import { ChannelBillPlan } from "./channelBillPlan";
 import { Group } from "./group";
 
-@Entity("ddEntity")
+@Entity("ddEntities")
 export class DdEntity extends EntityBase{
 
   @Column({ name: 'entity_name',nullable:true })

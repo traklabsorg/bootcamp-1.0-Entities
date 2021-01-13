@@ -1,9 +1,9 @@
-import { EntityBase } from "../platform-3.0-Framework/entities/EntityBase";
+import { EntityBase } from "./submodules/platform-3.0-Framework/EntityBase/EntityBase";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany,OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { PaymentCoupon } from "./paymentCoupon";
 import { SubscriptionOrder } from "./subscriptionOrder";
 
-@Entity("payment")
+@Entity("payments")
 export class Payment extends EntityBase{
 
   @Column({ name: 'payment_status',nullable:true })
