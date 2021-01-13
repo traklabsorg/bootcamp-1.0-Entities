@@ -39,6 +39,17 @@ export class User extends EntityBase {
   @Column({ name: 'user_additional_details', nullable: true , type:"json" })
   userAdditionalDetails: string;
 
+  @Column({ name: "external_user_id", nullable: true })
+  externalUserId: number;
+
+  @Column({ name: "external_tenant_user_id", nullable: true })
+  externalTenantUserId: number;
+
+  @Column({ name: "external_tenant_user_app_id", nullable: true })
+  externalTenantUserAppId: number;
+
+  
+
   @OneToMany((type) => LiveContentUser, liveContentUser => liveContentUser.user, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })

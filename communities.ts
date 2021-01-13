@@ -35,6 +35,15 @@ export class Community extends EntityBase{
   @Column({ name: "community_url", nullable: true})
   communityUrl: string;
 
+  @Column({ name: "external_tenant_id", nullable: true })
+  externalTenantId: number;
+
+  @Column({ name: "external_tenant_app_id", nullable: true })
+  externalTenantAppId: number;
+
+  @Column({ name: "is_active", nullable: true })
+  isActive: boolean;
+
   @OneToMany((type) => User, user => user.community, {
     onDelete: 'CASCADE', onUpdate: 'RESTRICT'
   })
