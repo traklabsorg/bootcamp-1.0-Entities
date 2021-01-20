@@ -8,6 +8,8 @@ import { LessonDataUser } from "./lessonDataUser";
 import { LiveContent } from "./liveContent";
 import { LiveContentUser } from "./liveContentUser";
 import { UserMeetingProvider } from "./userMeetingProvider";
+import { Payment } from "./payment";
+import { ChannelUser } from "./channelUser";
 
 @Entity("users")
 export class User extends EntityBase {
@@ -80,11 +82,28 @@ export class User extends EntityBase {
   })
   lessonDataUsers: LessonDataUser[]
 
+  @OneToMany((type) => Payment, payment => payment.user, {
+		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+  })
+  payments: Payment[]
+
+
+  @OneToMany((type) => LiveContent, liveContent => liveContent.user, {
+		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+  })
+  liveContents: LiveContent[]
+
+
+  @OneToMany((type) => ChannelUser, channelUser => channelUser.user, {
+    onDelete: 'CASCADE', onUpdate: 'RESTRICT'
+  })
+  channelUsers: ChannelUser[];
+
   @ManyToOne((type) => Community, community => community.users, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'community_id' })
   community : Community;
-  liveContents: any;
+
 
 }

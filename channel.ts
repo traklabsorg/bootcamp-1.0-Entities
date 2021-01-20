@@ -6,6 +6,7 @@ import { Section } from "./section";
 import { Community } from "./communities";
 import { LessonDataUser } from "./lessonDataUser";
 import { ChannelGroup } from "./channelGroup";
+import { ChannelUser } from "./channelUser";
 
 @Entity("channels")
 export class Channel extends EntityBase{
@@ -56,5 +57,11 @@ export class Channel extends EntityBase{
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   channelGroups: ChannelGroup[]
+
+  @OneToMany((type) => ChannelUser, channelUser => channelUser.channel, {
+    onDelete: 'CASCADE', onUpdate: 'RESTRICT'
+  })
+  channelUsers: ChannelUser[];
+
 
 }

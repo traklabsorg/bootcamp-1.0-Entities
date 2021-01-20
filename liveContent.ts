@@ -20,8 +20,8 @@ export class LiveContent extends EntityBase{
   @Column({ name: 'end_date',nullable:true })
   endDate: Date;
 
-  @Column({ name: 'user_meeting_provider_id',nullable:false})
-  userMeetingProviderId: number;
+  // @Column({ name: 'user_meeting_provider_id',nullable:false})
+  // userMeetingProviderId: number;
 
   @Column({ name: 'meeting_provider_id',nullable:false})
   meetingProviderId: number;
