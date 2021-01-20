@@ -17,7 +17,7 @@ export class ChannelGroup extends EntityBase{
   groupId:number;
 
   @Column({name: 'channel_group_details', nullable:true,type:"json"})
-  planId:string;
+  channelGroupDetails:string;
 
   @ManyToOne((type) => Channel, channels => channels.channelGroups, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'

@@ -18,6 +18,9 @@ export class GroupUser extends EntityBase{
   @Column({name: 'group_image', nullable:false})
   groupImage: string;
 
+  @Column("int",{name: 'role_ids', nullable:true, array:true})
+  roleIds: number[];
+
 
   @ManyToOne((type) => Group, group => group.groupUsers, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
