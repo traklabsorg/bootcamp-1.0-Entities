@@ -8,7 +8,7 @@ import { Channel } from "./channel";
 export class LessonDataUser extends EntityBase{
 
   @Column({ name: 'additional_details', nullable: true , type:"json" })
-  additonalDetails: string;
+  additionalDetails: string;
 
   @Column({ name: 'user_id',nullable:false})
   userId: number;
