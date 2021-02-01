@@ -48,10 +48,10 @@ export class Channel extends EntityBase{
   })
   sections: Section[]
 
-  @OneToMany((type) => LessonDataUser, lessonDataUser => lessonDataUser.channel, {
-		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
-  })
-  lessonDataUsers: LessonDataUser[]
+  // @OneToMany((type) => LessonDataUser, lessonDataUser => lessonDataUser.channel, {
+	// 	onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+  // })
+  // lessonDataUsers: LessonDataUser[]
 
   @OneToMany((type) => ChannelGroup, channelGroup => channelGroup.channel, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
