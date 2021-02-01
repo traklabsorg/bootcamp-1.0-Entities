@@ -13,7 +13,7 @@ export class Lesson extends EntityBase{
   @Column({ name: 'content_template_id',nullable:true })
   contentTemplateId: number;
 
-  @Column({ name: 'content_details',nullable:true })
+  @Column({ name: 'content_details',nullable:true,type:"json" })
   contentDetails: string;
 
   @Column({ name: 'sequence',nullable:true })
