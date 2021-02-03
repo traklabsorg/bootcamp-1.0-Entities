@@ -39,5 +39,4 @@ export class Lesson extends EntityBase{
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   lessonDatas: LessonData[];
-
 }

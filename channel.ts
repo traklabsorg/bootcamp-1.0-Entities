@@ -24,7 +24,7 @@ export class Channel extends EntityBase{
   channelDetails: string;
 
   @Column({ name: 'community_id',nullable:false })
-  tenantId: number;
+  communityId: number;
 
   @ManyToOne((type) => Community, community => community.channels, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
