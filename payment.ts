@@ -30,6 +30,9 @@ export class Payment extends EntityBase{
 
   @Column({name: 'subscription_order_id', nullable:true})
   subscriptionOrderId: number;
+
+  @Column("int",{name: 'coupon_ids', nullable:true, array:true})
+  couponIds: number[];
  
   @OneToOne(() => SubscriptionOrder)
   @JoinColumn({name: 'subscription_order_id'})

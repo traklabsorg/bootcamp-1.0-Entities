@@ -10,6 +10,7 @@ import { LiveContentUser } from "./liveContentUser";
 import { UserMeetingProvider } from "./userMeetingProvider";
 import { Payment } from "./payment";
 import { ChannelUser } from "./channelUser";
+import { SectionReview } from './sectionReview';
 
 @Entity("users")
 export class User extends EntityBase {
@@ -99,11 +100,15 @@ export class User extends EntityBase {
   })
   channelUsers: ChannelUser[];
 
+  @OneToMany((type) => SectionReview, sectionReview => sectionReview.user, {
+		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+  })
+  sectionReviews: SectionReview[];
+
   @ManyToOne((type) => Community, community => community.users, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'community_id' })
   community : Community;
-
 
 }
