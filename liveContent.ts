@@ -18,6 +18,9 @@ export class LiveContent extends EntityBase{
   @Column({ name: 'webinar_details',nullable:true, type:"json" })
   webinarDetails: string;
 
+  @Column({ name: 'host_users',nullable:true, type:"json" })
+  hostUsers: string;
+
   @Column({ name: 'type_of_registration',nullable:true })
   typeOfRegistration: string;
 
@@ -37,14 +40,14 @@ export class LiveContent extends EntityBase{
   @Column({ name: 'meeting_provider_id',nullable:false})
   meetingProviderId: number;
 
-  @Column({ name: 'user_id',nullable:false})
-  userId: number;
+  @Column({ name: 'primary_host_user_id',nullable:false})
+  primaryHostUserId: number;
 
   @ManyToOne((type) => User, user => user.liveContents, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
     
-  @JoinColumn({ name: 'user_id' })
+  @JoinColumn({ name: 'primary_host_user_id' })
   user: User;
 
 

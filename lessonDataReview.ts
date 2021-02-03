@@ -3,6 +3,7 @@ import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn
 import { Section } from "./section";
 import { User } from "./user";
 import { UserMeetingProviders_Meeting } from "./userMeetingProviders_meeting";
+import { LessonData } from "./lessonData";
 
 @Entity("lessonDataReviews")
 export class LessonDataReview extends EntityBase{
@@ -16,8 +17,8 @@ export class LessonDataReview extends EntityBase{
   @Column({ name: 'user_id', nullable: false })
   userId: number;
 
-  @Column({ name: 'section_id', nullable: false })
-  sectionId: number;
+  @Column({ name: 'lesson_data_id', nullable: false })
+  lessonDataId: number;
 
   @ManyToOne((type) => User, user => user.lessonDataReviews, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
@@ -25,7 +26,13 @@ export class LessonDataReview extends EntityBase{
   @JoinColumn({ name: 'user_id' })
   user: User;
 
-  @OneToOne(() => Section)
-  @JoinColumn({name: 'section_id'})
-  section: Section;
+
+  @ManyToOne((type) => LessonData, lessonData => lessonData.lessonDataReviews, {
+    onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+  })
+  @JoinColumn({ name: 'lesson_data_id' })
+  lessonData: LessonData;
+  // @OneToOne(() => Section)
+  // @JoinColumn({name: 'lesson_data_id'})
+  // lessonData: Section;
 }

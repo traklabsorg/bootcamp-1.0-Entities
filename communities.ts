@@ -32,6 +32,9 @@ export class Community extends EntityBase{
   @Column({ name: "community_additional_data", nullable: true, type: "json" })
   communityAdditionalData: string;
 
+  @Column({ name: "extra_data", nullable: true, type: "json" })
+  extraData: string;
+
   @Column({ name: "community_url", nullable: true})
   communityUrl: string;
 

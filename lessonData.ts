@@ -2,6 +2,7 @@ import { EntityBase } from "./submodules/platform-3.0-Framework/EntityBase/Entit
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Lesson } from "./lesson";
 import { LessonDataUser } from "./lessonDataUser";
+import { LessonDataReview } from './lessonDataReview';
 
 @Entity("lessonDatas")
 export class LessonData extends EntityBase{
@@ -36,5 +37,10 @@ export class LessonData extends EntityBase{
   @OneToMany((type) => LessonDataUser, lessonDataUser => lessonDataUser.lessonData, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  lessonDataUsers: LessonDataUser[]
+  lessonDataUsers: LessonDataUser[];
+
+  @OneToMany((type) => LessonDataReview, lessonDataReview => lessonDataReview.lessonData, {
+		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+  })
+  lessonDataReviews: LessonDataReview[];
 }

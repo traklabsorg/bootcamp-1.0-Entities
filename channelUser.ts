@@ -23,6 +23,9 @@ export class ChannelUser extends EntityBase{
   @Column({ name: 'user_id',nullable:false })
   userId: number;
 
+  @Column({name: 'channel_user_additional_details', nullable:true,type:"json"})
+  channelUserAdditionalDetails: string;
+
   @ManyToOne((type) => User, user => user.channelUsers, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
