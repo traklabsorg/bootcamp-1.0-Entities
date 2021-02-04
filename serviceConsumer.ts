@@ -6,10 +6,10 @@ import { BusinessEventSubscriber } from "./businessEventSubscriber";
 export class ServiceConsumer extends EntityBase{
 
   @Column({ name: 'service_consumer_name',nullable:true })
-  eventName: string;
+  serviceConsumerName: string;
 
   @Column({ name: 'service_consumer_type',nullable:true, type: "json" })
-  eventDetails: string;
+  serviceConsumerType: string;
 
   @Column({ name: 'service_consumer_details',nullable:true, type:"json" })
   serviceConsumerDetails: string;

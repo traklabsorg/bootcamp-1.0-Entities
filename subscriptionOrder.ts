@@ -27,8 +27,9 @@ export class SubscriptionOrder extends EntityBase{
   @JoinColumn({ name: 'subscription_id' })
   subscription: Subscription;
 
-  @OneToMany((type) => Payment, (payment) => payment.subscriptionOrder, {
-		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
-  })
-  payements: Payment[]
+  @OneToOne(() => Payment)
+  @JoinColumn({name: 'payment_id'})
+  payment: Payment;
+
+  
 }

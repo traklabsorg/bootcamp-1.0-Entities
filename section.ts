@@ -3,6 +3,7 @@ import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGene
 import { Channel } from "./channel";
 import { Lesson } from "./lesson";
 import { LessonDataReview } from "./lessonDataReview";
+import { SectionReview } from "./sectionReview";
 
 @Entity("sections")
 export class Section extends EntityBase{
@@ -30,6 +31,11 @@ export class Section extends EntityBase{
   })
   lessons: Lesson[]
 
+  @OneToMany((type) => SectionReview, (sectionReview) => sectionReview.section, {
+		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+  })
+  sectionReviews: SectionReview[]
+
   @ManyToOne((type) => Channel, channel => channel.sections, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
@@ -37,9 +43,9 @@ export class Section extends EntityBase{
   channel: Channel;
 
 
-  @OneToOne(() => LessonDataReview)
-  @JoinColumn({name: 'lesson_data_review_id'})
-  lessonDataReview: LessonDataReview;
+  // @OneToOne(() => LessonDataReview)
+  // @JoinColumn({name: 'lesson_data_review_id'})
+  // lessonDataReview: LessonDataReview;
 
 
 }
