@@ -40,8 +40,8 @@ export class LiveContent extends EntityBase{
   @Column({ name: 'meeting_provider_id',nullable:false})
   meetingProviderId: number;
 
-  @Column({ name: 'primary_host_user_id',nullable:false})
-  primaryHostUserId: number;
+  @Column({ name: 'user_id',nullable:true})
+  userId: number;
 
   @ManyToOne((type) => User, user => user.liveContents, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
