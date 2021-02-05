@@ -33,6 +33,9 @@ export class LiveContent extends EntityBase{
   @Column({ name: 'end_date',nullable:true })
   endDate: Date;
 
+  @Column({ name: 'recording_url',nullable:true })
+  recordingURL: string;
+
   @Column({ name: 'external_meeting_provider_user_id',nullable:false})
   externalMeetingProviderUserId: string;
 
