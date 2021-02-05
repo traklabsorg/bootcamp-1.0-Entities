@@ -12,7 +12,7 @@ export class LessonDataReview extends EntityBase{
   reviewDetails: string;
 
   @Column({ name: 'review_status', nullable: true })
-  reviewStatus: string;
+  reviewStatus: boolean;
 
   @Column({ name: 'user_id', nullable: false })
   userId: number;
