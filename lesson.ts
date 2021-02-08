@@ -35,7 +35,7 @@ export class Lesson extends EntityBase{
   @JoinColumn({ name: 'section_id' })
   section: Section;
 
-  @OneToMany((type) => LessonData, lessonData => lessonData.content, {
+  @OneToMany((type) => LessonData, lessonData => lessonData.lesson, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   lessonDatas: LessonData[];
