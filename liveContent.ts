@@ -24,7 +24,6 @@ export class LiveContent extends EntityBase{
   @Column({ name: 'type_of_registration',nullable:true })
   typeOfRegistration: string;
 
-
   @Column({ name: 'start_date_time',nullable:true })
   startDateTime: Date;
 
@@ -34,20 +33,27 @@ export class LiveContent extends EntityBase{
   @Column({ name: 'end_date',nullable:true })
   endDate: Date;
 
-  // @Column({ name: 'user_meeting_provider_id',nullable:false})
-  // userMeetingProviderId: number;
+  @Column({ name: 'external_meeting_provider_user_id',nullable:false})
+  externalMeetingProviderUserId: string;
 
   @Column({ name: 'meeting_provider_id',nullable:false})
   meetingProviderId: number;
 
-  @Column({ name: 'primary_host_user_id',nullable:false})
-  primaryHostUserId: number;
+  // @Column({ name: 'primary_host_user_id',nullable:false})
+  // primaryHostUserId: number;
+
+  @Column({ name: 'user_id',nullable:false})
+  userId: number;
 
   @ManyToOne((type) => User, user => user.liveContents, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
     
-  @JoinColumn({ name: 'primary_host_user_id' })
+  // @JoinColumn({ name: 'primary_host_user_id' })
+  // user: User;
+  
+
+  @JoinColumn({ name: 'user_id' })
   user: User;
 
 
