@@ -17,7 +17,7 @@ export class LiveContentUser extends EntityBase{
   @Column({ name: 'user_id',nullable:false})
   userId: number;
 
-  @Column({ name: 'user_id',nullable:false})
+  @Column({ name: 'invitation_type',nullable:false})
   invitationType: string;
 
   @ManyToOne((type) => LiveContent, liveContent => liveContent.liveContentUsers, {

@@ -7,9 +7,22 @@ import { Group } from "./group";
 export class Notification extends EntityBase{
 
   @Column({ name: 'notification_type',nullable:true })
-  notificationType: string;
+  notificationType: NotificationType;
 
   @Column({ name: 'notification_data',nullable:true, type:"json" })
   notificationData: string;
 
+  @Column({name: 'is_read',nullable:true})
+  isRead: boolean;
+
+  @Column({name:'user_id',nullable:true})
+  userId: number;
+
+}
+
+enum NotificationType{
+  email = "email",
+  sms = "sms",
+  web = "web",
+  mobile = "mobile"
 }
