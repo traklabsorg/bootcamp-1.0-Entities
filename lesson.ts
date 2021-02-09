@@ -26,7 +26,7 @@ export class Lesson extends EntityBase{
   isMandatorySequence: string;
 
 
-  @Column({ name: 'section_id',nullable:false})
+  @Column({ name: 'section_id',nullable:true})
   sectionId: number;
 
   @ManyToOne((type) => Section, section => section.lessons, {
