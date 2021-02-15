@@ -23,19 +23,19 @@ export class  BusinessEventSubscriber extends EntityBase{
   @Column({ name: 'service_consumer_id',nullable:true })
   serviceConsumerId: number;
 
-  @ManyToOne((type) => BusinessEvent, businessEvent => businessEvent.businessEventSubscribers, {
+  @ManyToOne((type) => BusinessEvent, businessEvent => businessEvent.businessEventSubscriber, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'business_event_id' })
   businessEvent: BusinessEvent;
 
-  @ManyToOne((type) => DdEntity, ddEntities => ddEntities.businessEventSubscribers, {
+  @ManyToOne((type) => DdEntity, ddEntities => ddEntities.businessEventSubscriber, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'subscriber_dd_entity_id' })
   ddEntity: DdEntity;
   
-  @ManyToOne((type) => ServiceConsumer, serviceConsumer => serviceConsumer.businessEventSubscribers, {
+  @ManyToOne((type) => ServiceConsumer, serviceConsumer => serviceConsumer.businessEventSubscriber, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'service_consumer_id' })

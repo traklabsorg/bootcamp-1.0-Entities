@@ -17,13 +17,13 @@ export class PaymentCoupon extends EntityBase{
   @Column({name: 'coupon_id', nullable:false})
   couponId: number;
 
-  @ManyToOne((type) => Coupon, coupon => coupon.paymentCoupons, {
+  @ManyToOne((type) => Coupon, coupon => coupon.paymentCoupon, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'coupon_id' })
   coupon: Coupon;
 
-  @ManyToOne((type) => Payment, payment => payment.paymentCoupons, {
+  @ManyToOne((type) => Payment, payment => payment.paymentCoupon, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'payment_id' })

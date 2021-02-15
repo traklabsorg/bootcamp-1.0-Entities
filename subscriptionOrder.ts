@@ -21,7 +21,7 @@ export class SubscriptionOrder extends EntityBase{
   @Column({name: 'subscription_id', nullable:true})
   subscriptionId: number;
 
-  @ManyToOne((type) => Subscription, subscription => subscription.subscriptionOrders, {
+  @ManyToOne((type) => Subscription, subscription => subscription.subscriptionOrder, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'subscription_id' })

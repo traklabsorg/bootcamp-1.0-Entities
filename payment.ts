@@ -41,9 +41,9 @@ export class Payment extends EntityBase{
   @OneToMany((type) => PaymentCoupon, paymentCoupon => paymentCoupon.payment, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  paymentCoupons: PaymentCoupon[]
+  paymentCoupon: PaymentCoupon[]
 
-  @ManyToOne((type) => User, user => user.payments, {
+  @ManyToOne((type) => User, user => user.payment, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'user_id' })

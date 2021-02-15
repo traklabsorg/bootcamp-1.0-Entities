@@ -50,17 +50,17 @@ export class Community extends EntityBase{
   @OneToMany((type) => User, user => user.community, {
     onDelete: 'CASCADE', onUpdate: 'RESTRICT'
   })
-  users: User[];
+  user: User[];
 
   @OneToMany((type) => Group, group => group.community, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  groups: Group[];
+  group: Group[];
 
   @OneToMany((type) => Channel, channel => channel.community, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  channels: Channel[];
+  channel: Channel[];
 
   // @OneToMany((type) => LiveContent, liveContent => liveContent.community, {
 	// 	onDelete: 'CASCADE',onUpdate: 'RESTRICT'

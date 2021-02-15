@@ -22,13 +22,13 @@ export class GroupUser extends EntityBase{
   roleIds: number[];
 
 
-  @ManyToOne((type) => Group, group => group.groupUsers, {
+  @ManyToOne((type) => Group, group => group.groupUser, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'group_id' })
   group: Group;
 
-  @ManyToOne((type) => User, user => user.groupUsers, {
+  @ManyToOne((type) => User, user => user.groupUser, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'user_id' })

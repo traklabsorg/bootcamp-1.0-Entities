@@ -18,7 +18,7 @@ export class EnrolledMeetings extends EntityBase{
   @Column({name: 'user_meeting_provider_meeting_id', nullable:false})
   hostUsuserMeetingProviderMeetingerId: number;
 
-  @ManyToOne((type) => User, user => user.enrolledMeetings, {
+  @ManyToOne((type) => User, user => user.enrolledMeeting, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'user_id' })

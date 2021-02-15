@@ -15,11 +15,11 @@ export class MeetingProvider extends EntityBase{
   @OneToMany((type) => UserMeetingProvider, (userMeetingProvider) => userMeetingProvider.meetingProvider, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  userMeetingProviders: UserMeetingProvider[]
+  userMeetingProvider: UserMeetingProvider[]
   
   @OneToMany((type) => LiveContent, (liveContent) => liveContent.meetingProvider, {
     onDelete: 'CASCADE', onUpdate: 'RESTRICT'
   })
-  liveContents: LiveContent[];
+  liveContent: LiveContent[];
 
 }

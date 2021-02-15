@@ -33,6 +33,6 @@ export class Coupon extends EntityBase{
   @OneToMany((type) => PaymentCoupon, paymentCoupon => paymentCoupon.coupon, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  paymentCoupons: PaymentCoupon[]
+  paymentCoupon: PaymentCoupon[]
   
 }

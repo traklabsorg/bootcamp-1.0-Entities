@@ -56,56 +56,56 @@ export class User extends EntityBase {
   @OneToMany((type) => LiveContentUser, liveContentUser => liveContentUser.user, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  liveContentUsers: LiveContentUser[];
+  liveContentUser: LiveContentUser[];
 
   @OneToMany((type) => UserMeetingProvider, userMeetingProvider => userMeetingProvider.user, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  userMeetingProviders: UserMeetingProvider[]
+  userMeetingProvider: UserMeetingProvider[]
   
   @OneToMany((type) => GroupUser, (groupUser) => groupUser.user, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  groupUsers: GroupUser[];
+  groupUser: GroupUser[];
 
   @OneToMany((type) => EnrolledMeetings, enrolledMeetings => enrolledMeetings.user, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  enrolledMeetings: EnrolledMeetings[];
+  enrolledMeeting: EnrolledMeetings[];
 
   @OneToMany((type) => LessonDataReview, lessonDataReviews => lessonDataReviews.user, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  lessonDataReviews: LessonDataReview[];
+  lessonDataReview: LessonDataReview[];
 
   @OneToMany((type) => LessonDataUser, lessonDataUser => lessonDataUser.user, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  lessonDataUsers: LessonDataUser[]
+  lessonDataUser: LessonDataUser[]
 
   @OneToMany((type) => Payment, payment => payment.user, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  payments: Payment[]
+  payment: Payment[]
 
 
   @OneToMany((type) => LiveContent, liveContent => liveContent.user, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  liveContents: LiveContent[]
+  liveContent: LiveContent[]
 
 
   @OneToMany((type) => ChannelUser, channelUser => channelUser.user, {
     onDelete: 'CASCADE', onUpdate: 'RESTRICT'
   })
-  channelUsers: ChannelUser[];
+  channelUser: ChannelUser[];
 
   @OneToMany((type) => SectionReview, sectionReview => sectionReview.user, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  sectionReviews: SectionReview[];
+  sectionReview: SectionReview[];
 
-  @ManyToOne((type) => Community, community => community.users, {
+  @ManyToOne((type) => Community, community => community.user, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'community_id' })
