@@ -25,6 +25,9 @@ export class Lesson extends EntityBase{
   @Column({ name: 'is_mandatory_sequence',nullable:true })
   isMandatorySequence: string;
 
+  @Column({ name: 'title',nullable:true })
+  title: string;
+
 
   @Column({ name: 'section_id',nullable:true})
   sectionId: number;
