@@ -31,7 +31,7 @@ export class SectionReview extends EntityBase{
   @ManyToOne((type) => User, user => user.sectionReview, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  @JoinColumn({ name: 'channel_id' })
+  @JoinColumn({ name: 'user_id' })
   user: User;
 
 
