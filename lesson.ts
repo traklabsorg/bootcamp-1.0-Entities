@@ -25,6 +25,14 @@ export class Lesson extends EntityBase{
   @Column({ name: 'is_mandatory_sequence',nullable:true })
   isMandatorySequence: string;
 
+  @Column("int",{name: 'collaborators', nullable:true, array:true})
+  collaborators: number[];
+
+  @Column({name:"is_featured",nullable:true})
+  isFeatured:boolean;
+
+
+
   @Column({ name: 'title',nullable:true })
   title: string;
 
@@ -43,3 +51,8 @@ export class Lesson extends EntityBase{
   })
   lessonData: LessonData[];
 }
+
+// class Collaborators{
+//   CollaboratorUserIds:number[];
+//   // ReaderUserIds:number[];
+// }
