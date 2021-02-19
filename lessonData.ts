@@ -26,7 +26,7 @@ export class LessonData extends EntityBase{
   lessonDetails: string;
 
   @Column({ name: 'lesson_id',nullable:false})
-  contentId: number;
+  lessonId: number;
 
   @ManyToOne((type) => Lesson, lesson => lesson.lessonData, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'

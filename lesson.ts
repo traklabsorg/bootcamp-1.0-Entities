@@ -1,5 +1,5 @@
 import { EntityBase } from "./submodules/platform-3.0-Framework/EntityBase/EntityBase";
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { AfterInsert, Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Group } from "./group";
 import { LessonData } from "./lessonData";
 import { Section } from "./section";
@@ -25,7 +25,7 @@ export class Lesson extends EntityBase{
   @Column({ name: 'is_mandatory_sequence',nullable:true })
   isMandatorySequence: string;
 
-  @Column("int",{name: 'collaborators', nullable:true, array:true})
+  @Column("int",{name: 'collaborators', nullable:true, array:true,default:() => 'array[]::integer[]'})
   collaborators: number[];
 
   @Column({name:"is_featured",nullable:true})
@@ -50,6 +50,12 @@ export class Lesson extends EntityBase{
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   lessonData: LessonData[];
+
+  // @AfterInsert()
+  // initializeCollaborators(){
+  //   console.log("Generating Ids..........",event);
+  //   this.collaborators = [this.Id]
+  // }
 }
 
 // class Collaborators{
