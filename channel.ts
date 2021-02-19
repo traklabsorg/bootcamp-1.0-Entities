@@ -26,7 +26,7 @@ export class Channel extends EntityBase{
   @Column({ name: 'community_id',nullable:false })
   communityId: number;
 
-  @ManyToOne((type) => Community, community => community.channels, {
+  @ManyToOne((type) => Community, community => community.channel, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'community_id' })
@@ -41,12 +41,12 @@ export class Channel extends EntityBase{
   @OneToMany((type) => ChannelBillPlan, channelBillPlan => channelBillPlan.channel, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  channelBillPlans: ChannelBillPlan[]
+  channelBillPlan: ChannelBillPlan[]
 
   @OneToMany((type) => Section, section => section.channel, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  sections: Section[]
+  section: Section[]
 
   // @OneToMany((type) => LessonDataUser, lessonDataUser => lessonDataUser.channel, {
 	// 	onDelete: 'CASCADE',onUpdate: 'RESTRICT'
@@ -56,12 +56,12 @@ export class Channel extends EntityBase{
   @OneToMany((type) => ChannelGroup, channelGroup => channelGroup.channel, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  channelGroups: ChannelGroup[]
+  channelGroup: ChannelGroup[]
 
   @OneToMany((type) => ChannelUser, channelUser => channelUser.channel, {
     onDelete: 'CASCADE', onUpdate: 'RESTRICT'
   })
-  channelUsers: ChannelUser[];
+  channelUser: ChannelUser[];
 
 
 }

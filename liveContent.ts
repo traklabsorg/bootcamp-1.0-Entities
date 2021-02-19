@@ -45,7 +45,7 @@ export class LiveContent extends EntityBase{
   @Column({ name: 'user_id',nullable:false})
   userId: number;
 
-  @ManyToOne((type) => User, user => user.liveContents, {
+  @ManyToOne((type) => User, user => user.liveContent, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
 
@@ -53,7 +53,7 @@ export class LiveContent extends EntityBase{
   user: User;
 
 
-  @ManyToOne((type) => MeetingProvider, meetingProvider => meetingProvider.liveContents, {
+  @ManyToOne((type) => MeetingProvider, meetingProvider => meetingProvider.liveContent, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'meeting_provider_id' })
@@ -62,7 +62,7 @@ export class LiveContent extends EntityBase{
   @OneToMany((type) => LiveContentUser, liveContentUser => liveContentUser.liveContent, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  liveContentUsers: LiveContentUser[]
+  liveContentUser: LiveContentUser[]
 
   // @ManyToOne((type) => Community, community => community.liveContents, {
   //   onDelete: 'CASCADE',onUpdate: 'RESTRICT'

@@ -17,11 +17,11 @@ export class DdEntity extends EntityBase{
   @OneToMany((type) => BusinessEvent, businessEvent => businessEvent.ddEntity, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  businessEvents: BusinessEvent[];
+  businessEvent: BusinessEvent[];
   
   @OneToMany((type) => BusinessEventSubscriber, businessEventSubscriber => businessEventSubscriber.ddEntity, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  businessEventSubscribers: BusinessEventSubscriber[];
+  businessEventSubscriber: BusinessEventSubscriber[];
 
 }

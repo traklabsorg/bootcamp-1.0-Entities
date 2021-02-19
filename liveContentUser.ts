@@ -20,13 +20,13 @@ export class LiveContentUser extends EntityBase{
   @Column({ name: 'invitation_type',nullable:false})
   invitationType: string;
 
-  @ManyToOne((type) => LiveContent, liveContent => liveContent.liveContentUsers, {
+  @ManyToOne((type) => LiveContent, liveContent => liveContent.liveContentUser, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'live_content_id' })
   liveContent: LiveContent;
 
-  @ManyToOne((type) => User, user => user.liveContentUsers, {
+  @ManyToOne((type) => User, user => user.liveContentUser, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'user_id' })

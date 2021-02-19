@@ -31,14 +31,14 @@ export class Group extends EntityBase{
   @OneToMany((type) => ChannelGroup, (channelGroup) => channelGroup.group, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  channelGroups: ChannelGroup[]
+  channelGroup: ChannelGroup[]
   
   @OneToMany((type) => GroupUser, (groupUser) => groupUser.group, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  groupUsers : GroupUser[]
+  groupUser : GroupUser[]
 
-  @ManyToOne((type) => Community, community => community.groups, {
+  @ManyToOne((type) => Community, community => community.group, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'community_id' })

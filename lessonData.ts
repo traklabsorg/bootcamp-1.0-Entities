@@ -26,9 +26,9 @@ export class LessonData extends EntityBase{
   lessonDetails: string;
 
   @Column({ name: 'lesson_id',nullable:false})
-  contentId: number;
+  lessonId: number;
 
-  @ManyToOne((type) => Lesson, lesson => lesson.lessonDatas, {
+  @ManyToOne((type) => Lesson, lesson => lesson.lessonData, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'lesson_id' })
@@ -37,10 +37,10 @@ export class LessonData extends EntityBase{
   @OneToMany((type) => LessonDataUser, lessonDataUser => lessonDataUser.lessonData, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  lessonDataUsers: LessonDataUser[];
+  lessonDataUser: LessonDataUser[];
 
   @OneToMany((type) => LessonDataReview, lessonDataReview => lessonDataReview.lessonData, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  lessonDataReviews: LessonDataReview[];
+  lessonDataReview: LessonDataReview[];
 }

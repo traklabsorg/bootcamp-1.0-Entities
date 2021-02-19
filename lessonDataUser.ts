@@ -16,7 +16,7 @@ export class LessonDataUser extends EntityBase{
   @Column({ name: 'lesson_data_id',nullable:false})
   lessonDataId: number;
 
-  @ManyToOne((type) => User, user => user.lessonDataUsers, {
+  @ManyToOne((type) => User, user => user.lessonDataUser, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'user_id' })
@@ -28,7 +28,7 @@ export class LessonDataUser extends EntityBase{
   // @JoinColumn({ name: 'channel_id' })
   // channel: Channel;
 
-  @ManyToOne((type) => LessonData, lessonData => lessonData.lessonDataUsers, {
+  @ManyToOne((type) => LessonData, lessonData => lessonData.lessonDataUser, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'lesson_data_id' })

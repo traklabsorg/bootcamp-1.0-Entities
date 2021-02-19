@@ -25,13 +25,13 @@ export class ChannelBillPlan extends EntityBase{
   @Column({name: 'plan_id', nullable:true})
   planId:number;
 
-  @ManyToOne((type) => Channel, channels => channels.channelBillPlans, {
+  @ManyToOne((type) => Channel, channels => channels.channelBillPlan, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'channel_id' })
   channel: Channel;
 
-  @ManyToOne((type) => Plan, plans => plans.channelBillPlans, {
+  @ManyToOne((type) => Plan, plans => plans.channelBillPlan, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'plan_id' })
@@ -40,6 +40,6 @@ export class ChannelBillPlan extends EntityBase{
   @OneToMany((type) => Subscription, subscription => subscription.channelBillPlan, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  subscriptions: Subscription[];
+  subscription: Subscription[];
 
 }

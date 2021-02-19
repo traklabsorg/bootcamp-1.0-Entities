@@ -20,14 +20,14 @@ export class LessonDataReview extends EntityBase{
   @Column({ name: 'lesson_data_id', nullable: false })
   lessonDataId: number;
 
-  @ManyToOne((type) => User, user => user.lessonDataReviews, {
+  @ManyToOne((type) => User, user => user.lessonDataReview, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'user_id' })
   user: User;
 
 
-  @ManyToOne((type) => LessonData, lessonData => lessonData.lessonDataReviews, {
+  @ManyToOne((type) => LessonData, lessonData => lessonData.lessonDataReview, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'lesson_data_id' })

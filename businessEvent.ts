@@ -22,7 +22,7 @@ export class BusinessEvent extends EntityBase{
   @Column({ name: 'dd_entity_id',nullable:true })
   ddEntityId: number;
 
-  @ManyToOne((type) => DdEntity, ddEntities => ddEntities.businessEvents, {
+  @ManyToOne((type) => DdEntity, ddEntities => ddEntities.businessEvent, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'dd_entity_id' })
@@ -31,6 +31,6 @@ export class BusinessEvent extends EntityBase{
   @OneToMany((type) => BusinessEventSubscriber, businessEventSubscriber => businessEventSubscriber.businessEvent, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  businessEventSubscribers: BusinessEventSubscriber[];
+  businessEventSubscriber: BusinessEventSubscriber[];
 
 }

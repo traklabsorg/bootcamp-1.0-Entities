@@ -22,16 +22,16 @@ export class SectionReview extends EntityBase{
   @Column({ name: "review_status", nullable: true })
   reviewStatus: string;
 
-  @ManyToOne((type) => Section, section => section.sectionReviews, {
+  @ManyToOne((type) => Section, section => section.sectionReview, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'section_id' })
   section: Section;
 
-  @ManyToOne((type) => User, user => user.sectionReviews, {
+  @ManyToOne((type) => User, user => user.sectionReview, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  @JoinColumn({ name: 'channel_id' })
+  @JoinColumn({ name: 'user_id' })
   user: User;
 
 

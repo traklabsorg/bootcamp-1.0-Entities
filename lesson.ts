@@ -1,5 +1,5 @@
 import { EntityBase } from "./submodules/platform-3.0-Framework/EntityBase/EntityBase";
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { AfterInsert, Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Group } from "./group";
 import { LessonData } from "./lessonData";
 import { Section } from "./section";
@@ -25,11 +25,22 @@ export class Lesson extends EntityBase{
   @Column({ name: 'is_mandatory_sequence',nullable:true })
   isMandatorySequence: string;
 
+  @Column("int",{name: 'collaborators', nullable:true, array:true,default:() => 'array[]::integer[]'})
+  collaborators: number[];
+
+  @Column({name:"is_featured",nullable:true})
+  isFeatured:boolean;
+
+
+
+  @Column({ name: 'title',nullable:true })
+  title: string;
+
 
   @Column({ name: 'section_id',nullable:true})
   sectionId: number;
 
-  @ManyToOne((type) => Section, section => section.lessons, {
+  @ManyToOne((type) => Section, section => section.lesson, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'section_id' })
@@ -38,5 +49,16 @@ export class Lesson extends EntityBase{
   @OneToMany((type) => LessonData, lessonData => lessonData.lesson, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  lessonDatas: LessonData[];
+  lessonData: LessonData[];
+
+  // @AfterInsert()
+  // initializeCollaborators(){
+  //   console.log("Generating Ids..........",event);
+  //   this.collaborators = [this.Id]
+  // }
 }
+
+// class Collaborators{
+//   CollaboratorUserIds:number[];
+//   // ReaderUserIds:number[];
+// }

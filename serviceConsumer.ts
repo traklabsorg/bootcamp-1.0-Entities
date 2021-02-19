@@ -17,6 +17,6 @@ export class ServiceConsumer extends EntityBase{
   @OneToMany((type) => BusinessEventSubscriber, businessEventSubscriber => businessEventSubscriber.serviceConsumer, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  businessEventSubscribers: BusinessEventSubscriber[];
+  businessEventSubscriber: BusinessEventSubscriber[];
 
 }

@@ -22,13 +22,13 @@ export class UserMeetingProvider extends EntityBase {
   })
   userMeetingProvider_meetings: UserMeetingProviders_Meeting[]
 
-  @ManyToOne((type) => User, users => users.userMeetingProviders, {
+  @ManyToOne((type) => User, users => users.userMeetingProvider, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'user_id' })
   user: User;
 
-  @ManyToOne((type) => MeetingProvider, meetingProviders => meetingProviders.userMeetingProviders, {
+  @ManyToOne((type) => MeetingProvider, meetingProviders => meetingProviders.userMeetingProvider, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'meeting_provider_id' })

@@ -22,13 +22,13 @@ export class ChannelGroup extends EntityBase{
   @Column({name: 'channel_group_revoke_users', nullable:true,type:"json"})
   channelGroupRevokeUsers:string;
 
-  @ManyToOne((type) => Channel, channels => channels.channelGroups, {
+  @ManyToOne((type) => Channel, channels => channels.channelGroup, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'channel_id' })
   channel: Channel;
 
-  @ManyToOne((type) => Group, groups => groups.channelGroups, {
+  @ManyToOne((type) => Group, groups => groups.channelGroup, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'group_id' })

@@ -29,14 +29,14 @@ export class Section extends EntityBase{
   @OneToMany((type) => Lesson, (lessons) => lessons.section, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  lessons: Lesson[]
+  lesson: Lesson[]
 
   @OneToMany((type) => SectionReview, (sectionReview) => sectionReview.section, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
-  sectionReviews: SectionReview[]
+  sectionReview: SectionReview[]
 
-  @ManyToOne((type) => Channel, channel => channel.sections, {
+  @ManyToOne((type) => Channel, channel => channel.section, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'channel_id' })
