@@ -23,6 +23,9 @@ export class Channel extends EntityBase{
   @Column({ name: 'channel_details',nullable:true, type:"json" })
   channelDetails: string;
 
+  @Column({name:"channel_sequence_id",nullable:true})
+  channelSequenceId: number;
+
   @Column({ name: 'community_id',nullable:false })
   communityId: number;
 
