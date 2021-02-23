@@ -28,6 +28,10 @@ export class Lesson extends EntityBase{
   @Column("int",{name: 'collaborators', nullable:true, array:true,default:() => 'array[]::integer[]'})
   collaborators: number[];
 
+  // @Column("text", { array: true, nullable : true })
+  // collaborators: string[];
+
+
   @Column({name:"is_featured",nullable:true})
   isFeatured:boolean;
 

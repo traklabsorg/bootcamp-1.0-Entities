@@ -23,7 +23,7 @@ export class Section extends EntityBase{
   @Column({ name: "section_type", nullable: true })
   sectionType: string;
 
-  @Column({ name: 'channel_id',nullable:false})
+  @Column({ name: 'channel_id',nullable:true})
   channelId: number;
 
   @OneToMany((type) => Lesson, (lessons) => lessons.section, {

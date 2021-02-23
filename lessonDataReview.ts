@@ -36,3 +36,5 @@ export class LessonDataReview extends EntityBase{
   // @JoinColumn({name: 'lesson_data_id'})
   // lessonData: Section;
 }
+
+
