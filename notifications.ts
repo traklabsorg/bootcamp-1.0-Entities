@@ -15,6 +15,9 @@ export class Notification extends EntityBase{
   @Column({name: 'is_read',nullable:true})
   isRead: boolean;
 
+  @Column({name: 'label',nullable:true})
+  label: Label;
+
   @Column({name:'user_id',nullable:true})
   userId: number;
 
@@ -25,4 +28,11 @@ enum NotificationType{
   sms = "sms",
   web = "web",
   mobile = "mobile"
+}
+
+
+enum Label{
+  accountCreation = "AccountCreation",
+  webinarInvent = "WebinarInvent",
+  contentReview = "ContentReview"
 }
