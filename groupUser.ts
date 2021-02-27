@@ -18,6 +18,9 @@ export class GroupUser extends EntityBase{
   @Column({name: 'group_image', nullable:false})
   groupImage: string;
 
+  @Column({name: 'invitation_status', nullable:true})
+  invitationStatus: string;
+
   @Column("int",{name: 'role_ids', nullable:true, array:true})
   roleIds: number[];
 
