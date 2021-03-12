@@ -18,8 +18,11 @@ export class Notification extends EntityBase{
   @Column({name: 'label',nullable:true})
   label: Label;
 
-  @Column({name:'user_id',nullable:true})
-  userId: number;
+  // @Column({name:'user_id',nullable:true})
+  // userId: number;
+
+  @Column("int",{name: 'user_ids', nullable:true, array:true,default:() => 'array[]::integer[]'})
+  userIds: number[];
 
 }
 
