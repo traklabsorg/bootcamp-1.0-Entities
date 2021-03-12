@@ -22,6 +22,8 @@ export class ChannelGroup extends EntityBase{
   @Column({name: 'channel_group_revoke_users', nullable:true,type:"json"})
   channelGroupRevokeUsers:string;
 
+  label:string;
+
   @ManyToOne((type) => Channel, channels => channels.channelGroup, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
