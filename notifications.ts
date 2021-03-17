@@ -21,8 +21,8 @@ export class Notification extends EntityBase{
   @Column({name: 'notification_status',nullable:true})
   notificationStatus: string;
 
-  // @Column({name:'user_id',nullable:true})
-  // userId: number;
+  @Column({name:'user_id',nullable:true})
+  userId: number;
 
 }
 
