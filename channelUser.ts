@@ -1,5 +1,5 @@
 import { EntityBase } from "./submodules/platform-3.0-Framework/EntityBase/EntityBase";
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { ChannelBillPlan } from "./channelBillPlan";
 import { Group } from "./group";
 import { Section } from "./section";
@@ -10,6 +10,7 @@ import { User } from "./user";
 import { Channel } from "./channel";
 
 @Entity("channelUsers")
+@Unique(["channelId","userId"])
 export class ChannelUser extends EntityBase{
 
 

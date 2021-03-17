@@ -1,11 +1,12 @@
 import { EntityBase } from "./submodules/platform-3.0-Framework/EntityBase/EntityBase";
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { Group } from "./group";
 import { LiveContent } from "./liveContent";
 import { User } from "./user";
 import { Channel } from "./channel";
 
 @Entity("communities")
+@Unique(["communityName"])
 export class Community extends EntityBase{
 
   @Column({ name: 'community_name',nullable:true })

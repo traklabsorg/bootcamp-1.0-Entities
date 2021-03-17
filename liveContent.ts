@@ -1,11 +1,13 @@
 import { EntityBase } from "./submodules/platform-3.0-Framework/EntityBase/EntityBase";
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { LiveContentUser } from "./liveContentUser";
 import { User } from "./user";
 import { UserMeetingProvider } from "./userMeetingProvider";
 import { MeetingProvider } from "./meetingProvider";
 
 @Entity("liveContents")
+@Unique(["url"])
+@Unique(["userId"])
 export class LiveContent extends EntityBase{
 
   @Column({ name: 'url',nullable:true })
