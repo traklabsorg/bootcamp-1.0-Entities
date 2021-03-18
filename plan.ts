@@ -12,7 +12,7 @@ export class Plan extends EntityBase{
   planDetails: string;
 
   @Column({ name: 'plan_default_price',nullable:true })
-  planDefaultPrice: string;
+  planDefaultPrice: number;
 
   @Column({ name: 'plan_currency',nullable:true })
   planCurrency: string;
