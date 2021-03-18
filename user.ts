@@ -1,5 +1,5 @@
 import { EntityBase } from "./submodules/platform-3.0-Framework/EntityBase/EntityBase";
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { Community } from "./communities";
 import { EnrolledMeetings } from "./enrolledMeetings";
 import { GroupUser } from "./groupUser";
@@ -13,6 +13,8 @@ import { ChannelUser } from "./channelUser";
 import { SectionReview } from './sectionReview';
 
 @Entity("users")
+@Unique(["communityId"])
+@Unique(["userEmail"])
 export class User extends EntityBase {
 
   @Column({ name: 'user_name', nullable: true })

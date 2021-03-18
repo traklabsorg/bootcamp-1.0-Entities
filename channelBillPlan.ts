@@ -1,10 +1,11 @@
 import { EntityBase } from "./submodules/platform-3.0-Framework/EntityBase/EntityBase";
 import { Subscription } from "./subscription";
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { Channel } from "./channel";
 import { Plan } from "./plan";
 
 @Entity("channelBillPlans")
+@Unique(["channelId", "planId"])
 export class ChannelBillPlan extends EntityBase{
   
   @Column({ name: 'additional_details',nullable:true, type:"json" })

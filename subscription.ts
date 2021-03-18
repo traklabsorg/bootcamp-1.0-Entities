@@ -1,9 +1,10 @@
 import { EntityBase } from "./submodules/platform-3.0-Framework/EntityBase/EntityBase";
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { ChannelBillPlan } from "./channelBillPlan";
 import { SubscriptionOrder } from "./subscriptionOrder";
 
 @Entity("subscriptions")
+@Unique(["channelBillPlanId","communityId","startDateTime","endDateTime"])
 export class Subscription extends EntityBase{
 
   @Column({ name: 'subscription_details',nullable:true, type:"json" })
@@ -29,6 +30,9 @@ export class Subscription extends EntityBase{
 
   @Column({name: 'channel_bill_plan_id', nullable:true})
   channelBillPlanId: number;
+
+  @Column({name: 'community_id', nullable:true})
+  communityId: number;
 
   @ManyToOne((type) => ChannelBillPlan, channelBillPlan => channelBillPlan.subscription, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'

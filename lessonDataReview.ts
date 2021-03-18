@@ -1,11 +1,12 @@
 import { EntityBase } from "./submodules/platform-3.0-Framework/EntityBase/EntityBase";
-import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { Section } from "./section";
 import { User } from "./user";
 import { UserMeetingProviders_Meeting } from "./userMeetingProviders_meeting";
 import { LessonData } from "./lessonData";
 
 @Entity("lessonDataReviews")
+@Unique(["lessonDataId","userId"])
 export class LessonDataReview extends EntityBase{
 
   @Column({ name: 'review_details', nullable: true , type:"json" })
