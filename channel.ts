@@ -27,7 +27,7 @@ export class Channel extends EntityBase{
   @Column({name:"channel_sequence_id",nullable:true})
   channelSequenceId: number;
 
-  @Column({ name: 'community_id',nullable:false })
+  @Column({ name: 'community_id',nullable:true })
   communityId: number;
 
   @ManyToOne((type) => Community, community => community.channel, {

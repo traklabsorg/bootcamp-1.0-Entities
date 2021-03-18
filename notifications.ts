@@ -18,11 +18,11 @@ export class Notification extends EntityBase{
   @Column({name: 'label',nullable:true})
   label: Label;
 
-  // @Column({name:'user_id',nullable:true})
-  // userId: number;
+  @Column({name: 'notification_status',nullable:true})
+  notificationStatus: string;
 
-  @Column("int",{name: 'user_ids', nullable:true, array:true,default:() => 'array[]::integer[]'})
-  userIds: number[];
+  @Column({name:'user_id',nullable:true})
+  userId: number;
 
 }
 
@@ -35,7 +35,15 @@ enum NotificationType{
 
 
 enum Label{
+  inviteMember = "InviteMember",
+  webinarInvite = "WebinarInvite",
+  webinarRegistration = "WebinarRegistration",
+  groupAdded = "GroupAdded",
+  channelAdded = "ChannelAdded",
+  lessonSubmitted = "LessonSubmitted",
+
   accountCreation = "AccountCreation",
   webinarInvent = "WebinarInvent",
-  contentReview = "ContentReview"
+  contentReview = "ContentReview",
+
 }

@@ -1,11 +1,12 @@
 import { EntityBase } from "./submodules/platform-3.0-Framework/EntityBase/EntityBase";
 import { Subscription } from "./subscription";
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { Channel } from "./channel";
 import { Plan } from "./plan";
 import { Group } from "./group";
 
 @Entity("channelGroups")
+@Unique(["channelId","groupId"])
 export class ChannelGroup extends EntityBase{
   
 

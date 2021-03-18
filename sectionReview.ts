@@ -1,5 +1,5 @@
 import { EntityBase } from "./submodules/platform-3.0-Framework/EntityBase/EntityBase";
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { Channel } from "./channel";
 import { Lesson } from "./lesson";
 import { LessonDataReview } from "./lessonDataReview";
@@ -7,6 +7,7 @@ import { User } from "./user";
 import { Section } from "./section";
 
 @Entity("sectionReviews")
+@Unique(["sectionId","userId"])
 export class SectionReview extends EntityBase{
 
 

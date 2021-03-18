@@ -1,9 +1,10 @@
 import { EntityBase } from "./submodules/platform-3.0-Framework/EntityBase/EntityBase";
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { Group } from "./group";
 import { User } from "./user";
 
 @Entity("groupUsers")
+@Unique(["userId","groupId"])
 export class GroupUser extends EntityBase{
 
   @Column({ name: 'group_user_details',nullable:true , type:"json" })

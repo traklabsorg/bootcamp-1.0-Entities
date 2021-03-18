@@ -1,9 +1,10 @@
 import { EntityBase } from "./submodules/platform-3.0-Framework/EntityBase/EntityBase";
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { PaymentCoupon } from "./paymentCoupon";
 
 
 @Entity("coupons")
+@Unique(["couponCode"])
 export class Coupon extends EntityBase{
 
   @Column({ name: 'couponCode',nullable:true})

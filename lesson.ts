@@ -1,10 +1,12 @@
 import { EntityBase } from "./submodules/platform-3.0-Framework/EntityBase/EntityBase";
-import { AfterInsert, Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { AfterInsert, Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { Group } from "./group";
 import { LessonData } from "./lessonData";
 import { Section } from "./section";
 
 @Entity("lessons")
+@Unique(["sectionId"])
+@Unique(["contentType"])
 export class Lesson extends EntityBase{
 
   @Column({ name: 'content_type',nullable:true })
@@ -43,6 +45,9 @@ export class Lesson extends EntityBase{
 
   @Column({ name: 'section_id',nullable:true})
   sectionId: number;
+
+  @Column({ name: 'lesson_total_point',nullable:true})
+  lessonTotalPoint: number;
 
   @ManyToOne((type) => Section, section => section.lesson, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'

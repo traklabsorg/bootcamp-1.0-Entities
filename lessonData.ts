@@ -1,10 +1,11 @@
 import { EntityBase } from "./submodules/platform-3.0-Framework/EntityBase/EntityBase";
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { Lesson } from "./lesson";
 import { LessonDataUser } from "./lessonDataUser";
 import { LessonDataReview } from './lessonDataReview';
 
 @Entity("lessonDatas")
+@Unique(["lessonId","url"])
 export class LessonData extends EntityBase{
 
   @Column({ name: 'content_type',nullable:true })
