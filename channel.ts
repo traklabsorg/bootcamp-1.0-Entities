@@ -8,6 +8,7 @@ import { LessonDataUser } from "./lessonDataUser";
 import { ChannelGroup } from "./channelGroup";
 import { ChannelUser } from "./channelUser";
 
+
 @Entity("channels")
 export class Channel extends EntityBase{
 
