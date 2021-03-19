@@ -24,7 +24,10 @@ export class ChannelBillPlan extends EntityBase{
   channelId:number;
 
   @Column({name: 'plan_id', nullable:true})
-  planId:number;
+  planId: number;
+  
+  @Column({name: 'price', nullable:true})
+  price:number;
 
   @ManyToOne((type) => Channel, channels => channels.channelBillPlan, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
