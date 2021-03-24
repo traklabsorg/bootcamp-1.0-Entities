@@ -18,7 +18,7 @@ export class Community extends EntityBase{
   @Column({ name: 'address',nullable:true })
   address: string;
 
-  @Column({ name: 'payment_info',nullable:true})
+  @Column({ name: 'payment_info',nullable:true, type: "json"})
   paymentInfo: string;
 
   @Column({ name: 'subscription_start_date',nullable:true })
