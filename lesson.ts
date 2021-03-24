@@ -5,8 +5,7 @@ import { LessonData } from "./lessonData";
 import { Section } from "./section";
 
 @Entity("lessons")
-@Unique(["sectionId"])
-@Unique(["contentType"])
+@Unique(["sectionId","contentType"])
 export class Lesson extends EntityBase{
 
   @Column({ name: 'content_type',nullable:true })

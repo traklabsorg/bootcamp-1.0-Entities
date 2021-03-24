@@ -13,8 +13,7 @@ import { ChannelUser } from "./channelUser";
 import { SectionReview } from './sectionReview';
 
 @Entity("users")
-@Unique(["communityId"])
-@Unique(["userEmail"])
+@Unique(["userEmail","communityId"])
 export class User extends EntityBase {
 
   @Column({ name: 'user_name', nullable: true })
