@@ -14,14 +14,14 @@ export class LessonData extends EntityBase{
   @Column({ name: 'url', nullable:true})
   url: string;
 
-  @Column({ name: 'is_reviewed', nullable:true})
-  isReviewed: string;
+  @Column({ name: 'is_reviewed', nullable:true, type:"boolean"})
+  isReviewed: boolean;
 
-  @Column({ name: 'is_submitted', nullable:true})
-  isSubmitted: string;
+  @Column({ name: 'is_submitted', nullable:true, type:"boolean"})
+  isSubmitted: boolean;
 
-  @Column({ name: 'is_draft', nullable:true})
-  isDraft: string;
+  @Column({ name: 'is_draft', nullable:true, type:"boolean"})
+  isDraft: boolean;
 
   @Column({ name: 'lesson_details',nullable:true, type:"json" })
   lessonDetails: string;

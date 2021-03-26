@@ -2,7 +2,7 @@ import { EntityBase } from "./submodules/platform-3.0-Framework/EntityBase/Entit
 import { Column, Entity } from "typeorm";
 import { Exclude } from "class-transformer";
 
-@Entity("channels")
+@Entity("globalsearch")
 @Exclude()
 export class GlobalSearch extends EntityBase {
   @Exclude()
