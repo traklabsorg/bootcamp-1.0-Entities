@@ -67,5 +67,5 @@ export class Channel extends EntityBase{
   })
   channelUser: ChannelUser[];
 
-
+ 
 }

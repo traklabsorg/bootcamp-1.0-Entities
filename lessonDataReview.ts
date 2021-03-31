@@ -6,7 +6,6 @@ import { UserMeetingProviders_Meeting } from "./userMeetingProviders_meeting";
 import { LessonData } from "./lessonData";
 
 @Entity("lessonDataReviews")
-@Unique(["lessonDataId","userId"])
 export class LessonDataReview extends EntityBase{
 
   @Column({ name: 'review_details', nullable: true , type:"json" })
