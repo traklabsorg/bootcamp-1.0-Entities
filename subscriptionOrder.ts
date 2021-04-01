@@ -16,6 +16,9 @@ export class SubscriptionOrder extends EntityBase {
   @Column({ name: 'order_date_time', nullable: true, type: "timestamp with time zone" })
   orderDateTime: Date;
 
+  @Column({ name: 'order_end_date', nullable: true, type: "timestamp with time zone" })
+  orderEndDate: Date;
+
   @Column({ name: 'order_details', nullable: true, type: "json" })
   orderDetails: string;
 
