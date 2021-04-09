@@ -1,3 +1,4 @@
+import { CommunityCard } from './communityCard';
 import { EntityBase } from "./submodules/platform-3.0-Framework/EntityBase/EntityBase";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { Group } from "./group";
@@ -7,24 +8,24 @@ import { Channel } from "./channel";
 
 @Entity("communities")
 @Unique(["communityName"])
-export class Community extends EntityBase{
+export class Community extends EntityBase {
 
-  @Column({ name: 'community_name',nullable:true })
+  @Column({ name: 'community_name', nullable: true })
   communityName: string;
 
-  @Column({ name: 'community_admin_id',nullable:true })
+  @Column({ name: 'community_admin_id', nullable: true })
   communityAdminId: number;
 
-  @Column({ name: 'address',nullable:true })
+  @Column({ name: 'address', nullable: true })
   address: string;
 
-  @Column({ name: 'payment_info',nullable:true, type: "json"})
+  @Column({ name: 'payment_info', nullable: true, type: "json" })
   paymentInfo: string;
 
-  @Column({ name: 'subscription_start_date',nullable:true })
+  @Column({ name: 'subscription_start_date', nullable: true })
   subscriptionStartDate: Date;
 
-  @Column({ name: 'subscription_end_date',nullable:true })
+  @Column({ name: 'subscription_end_date', nullable: true })
   subscriptionEndDate: Date;
 
   @Column({ name: "user_quotas", nullable: true })
@@ -36,7 +37,7 @@ export class Community extends EntityBase{
   @Column({ name: "extra_data", nullable: true, type: "json" })
   extraData: string;
 
-  @Column({ name: "community_url", nullable: true})
+  @Column({ name: "community_url", nullable: true })
   communityUrl: string;
 
   @Column({ name: "external_tenant_id", nullable: true })
@@ -54,18 +55,17 @@ export class Community extends EntityBase{
   user: User[];
 
   @OneToMany((type) => Group, group => group.community, {
-		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+    onDelete: 'CASCADE', onUpdate: 'RESTRICT'
   })
   group: Group[];
 
   @OneToMany((type) => Channel, channel => channel.community, {
-		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+    onDelete: 'CASCADE', onUpdate: 'RESTRICT'
   })
   channel: Channel[];
 
-  // @OneToMany((type) => LiveContent, liveContent => liveContent.community, {
-	// 	onDelete: 'CASCADE',onUpdate: 'RESTRICT'
-  // })
-  // liveContents: LiveContent[];
-  
+  @OneToMany((type) => CommunityCard, communityCard => communityCard.community, {
+    onDelete: 'CASCADE', onUpdate: 'RESTRICT'
+  })
+  communityCard: CommunityCard[];
 }
