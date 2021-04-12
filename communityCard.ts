@@ -33,7 +33,7 @@ export class CommunityCard extends EntityBase {
   @Column({ name: 'community_id', nullable: true })
   communityId: number;
 
-@Column({name:'is_default'})
+@Column({name:'is_default',nullable : true})
 isDefault:boolean  
 
   @ManyToOne((type) => Community, community => community.communityCard, {
