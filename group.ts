@@ -37,11 +37,11 @@ export class Group extends EntityBase {
   })
   groupUser: GroupUser[]
 
-
+  @ManyToOne((type) => Community, community => community.group, {
+    onDelete: 'CASCADE', onUpdate: 'RESTRICT'
+  })
 
   @JoinColumn({ name: 'community_id' })
   community: Community;
-
-
 
 }
