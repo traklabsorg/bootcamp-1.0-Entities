@@ -37,23 +37,11 @@ export class Group extends EntityBase {
   })
   groupUser: GroupUser[]
 
-  @ManyToOne((type) => Community, community => community.group, {
-    onDelete: 'CASCADE', onUpdate: 'RESTRICT'
-  })
+
 
   @JoinColumn({ name: 'community_id' })
   community: Community;
 
-
-  @Column({ name: 'community_card_id', nullable: true })
-  communityCardId: number;
-
-  @ManyToOne((type) => CommunityCard, communityCard => communityCard.group, {
-    onDelete: 'CASCADE', onUpdate: 'RESTRICT'
-  })
-
-  @JoinColumn({ name: 'community_card_id' })
-  communityCard: CommunityCard;
 
 
 }

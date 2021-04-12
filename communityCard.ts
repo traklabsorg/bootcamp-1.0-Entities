@@ -33,16 +33,14 @@ export class CommunityCard extends EntityBase {
   @Column({ name: 'community_id', nullable: true })
   communityId: number;
 
+@Column({name:'is_default'})
+isDefault:boolean  
+
   @ManyToOne((type) => Community, community => community.communityCard, {
     onDelete: 'CASCADE', onUpdate: 'RESTRICT'
   })
 
   @JoinColumn({ name: 'community_id' })
   community: Community;
-
-  @OneToMany((type) => Group, group => group.communityCard, {
-    onDelete: 'CASCADE', onUpdate: 'RESTRICT'
-  })
-  group: Group[]
 
 }

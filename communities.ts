@@ -5,6 +5,7 @@ import { Group } from "./group";
 import { LiveContent } from "./liveContent";
 import { User } from "./user";
 import { Channel } from "./channel";
+import { CommunityBills } from './communityBills';
 
 @Entity("communities")
 @Unique(["communityName"])
@@ -68,4 +69,9 @@ export class Community extends EntityBase {
     onDelete: 'CASCADE', onUpdate: 'RESTRICT'
   })
   communityCard: CommunityCard[];
+
+  @OneToMany((type)=>CommunityBills,(communityBills)=>communityBills.community,{
+    onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+  })
+  communityBills:CommunityBills[]
 }
