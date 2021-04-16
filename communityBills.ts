@@ -4,7 +4,9 @@ import { EntityBase } from "./submodules/platform-3.0-Framework/EntityBase/Entit
 
 @Entity("communityBills")
 export class CommunityBills extends EntityBase{
-    
+    @Column({name:'communityId'})
+    communityId:number;
+
     @Column({name:'bill_date'})
     billDate:Date;
 
