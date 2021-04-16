@@ -30,6 +30,9 @@ export class Channel extends EntityBase{
   @Column({ name: 'community_id',nullable:true })
   communityId: number;
 
+  @Column({ name: 'is_community_channel',nullable:true })
+  isCommunityChannel: boolean;
+
   @ManyToOne((type) => Community, community => community.channel, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
