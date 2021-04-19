@@ -34,6 +34,9 @@ export class CommunityBills extends EntityBase{
     @Column({name:'is_paid'})
     isPaid:boolean;
 
+    @Column({name:'invoice_url'})
+    invoiceUrl:string;
+
     @ManyToOne((type)=>Community, community => community.Id,{
         onDelete:'CASCADE',onUpdate:'RESTRICT'
     })
