@@ -6,29 +6,29 @@ import { User } from "./user";
 import { UserMeetingProvider } from "./userMeetingProvider";
 
 @Entity("liveContentUsers")
-@Unique(["userId", "liveContentId"])
-export class LiveContentUser extends EntityBase{
+@Unique(["userId", "liveContentId", "invitationType"])
+export class LiveContentUser extends EntityBase {
 
-  @Column({ name: 'additional_details',nullable:true, type:"json" })
+  @Column({ name: 'additional_details', nullable: true, type: "json" })
   additionalDetails: string;
 
-  @Column({ name: 'live_content_id',nullable:false})
+  @Column({ name: 'live_content_id', nullable: false })
   liveContentId: number;
 
-  @Column({ name: 'user_id',nullable:false})
+  @Column({ name: 'user_id', nullable: false })
   userId: number;
 
-  @Column({ name: 'invitation_type',nullable:false})
+  @Column({ name: 'invitation_type', nullable: false })
   invitationType: string;
 
   @ManyToOne((type) => LiveContent, liveContent => liveContent.liveContentUser, {
-    onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+    onDelete: 'CASCADE', onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'live_content_id' })
   liveContent: LiveContent;
 
   @ManyToOne((type) => User, user => user.liveContentUser, {
-    onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+    onDelete: 'CASCADE', onUpdate: 'RESTRICT'
   })
   @JoinColumn({ name: 'user_id' })
   user: User;

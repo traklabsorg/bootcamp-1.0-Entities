@@ -4,9 +4,9 @@ import { LiveContentUser } from "./liveContentUser";
 import { User } from "./user";
 import { UserMeetingProvider } from "./userMeetingProvider";
 import { MeetingProvider } from "./meetingProvider";
+import { Community } from "./communities";
 
 @Entity("liveContents")
-@Unique(["userId"])
 export class LiveContent extends EntityBase {
 
   @Column({ name: 'url', nullable: true })
@@ -46,6 +46,9 @@ export class LiveContent extends EntityBase {
   @Column({ name: 'user_id', nullable: false })
   userId: number;
 
+  @Column({ name: 'community_id', nullable: false })
+  communityId: number;
+
   @ManyToOne((type) => User, user => user.liveContent, {
     onDelete: 'CASCADE', onUpdate: 'RESTRICT'
   })
@@ -65,9 +68,9 @@ export class LiveContent extends EntityBase {
   })
   liveContentUser: LiveContentUser[]
 
-  // @ManyToOne((type) => Community, community => community.liveContents, {
-  //   onDelete: 'CASCADE',onUpdate: 'RESTRICT'
-  // })
-  // @JoinColumn({ name: 'community_id' })
-  // community: Community;
+  @ManyToOne((type) => Community, community => community.liveContents, {
+    onDelete: 'CASCADE', onUpdate: 'RESTRICT'
+  })
+  @JoinColumn({ name: 'community_id' })
+  community: Community;
 }

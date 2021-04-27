@@ -70,8 +70,14 @@ export class Community extends EntityBase {
   })
   communityCard: CommunityCard[];
 
-  @OneToMany((type)=>CommunityBills,(communityBills)=>communityBills.community,{
-    onDelete: 'CASCADE',onUpdate: 'RESTRICT'
+  @OneToMany((type) => CommunityBills, (communityBills) => communityBills.community, {
+    onDelete: 'CASCADE', onUpdate: 'RESTRICT'
   })
-  communityBills:CommunityBills[]
+  communityBills: CommunityBills[]
+
+  @OneToMany((type) => LiveContent, liveContent => liveContent.community, {
+    onDelete: 'CASCADE', onUpdate: 'RESTRICT'
+  })
+  liveContents: LiveContent[];
+
 }
