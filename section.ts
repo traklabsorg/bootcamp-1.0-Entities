@@ -27,6 +27,9 @@ export class Section extends EntityBase{
   @Column({ name: 'channel_id',nullable:true})
   channelId: number;
 
+  @Column({ name: 'is_Hidden',default: false,})
+  isHidden: boolean;
+
   @OneToMany((type) => Lesson, (lessons) => lessons.section, {
 		onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
