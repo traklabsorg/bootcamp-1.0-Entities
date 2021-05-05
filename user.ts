@@ -30,6 +30,9 @@ export class User extends EntityBase {
   @Column({ name: 'user_details', nullable: true, type: "json" })
   userDetails: string;
 
+  @Column({ name: 'user_settings', nullable: true, type: "json", default: {} })
+  userSettings: string;
+
   @Column({ name: 'activity_data', nullable: true, type: "json" })
   activityData: string;
 
