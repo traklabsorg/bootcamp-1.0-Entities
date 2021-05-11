@@ -21,7 +21,7 @@ export class SectionReview extends EntityBase{
   reviewDetails: string;
 
   @Column({ name: "review_status", nullable: true })
-  reviewStatus: string;
+  reviewStatus: boolean;
 
   @ManyToOne((type) => Section, section => section.sectionReview, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
