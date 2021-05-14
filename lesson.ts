@@ -17,6 +17,9 @@ export class Lesson extends EntityBase{
   @Column({ name: 'content_details',nullable:true,type:"json" })
   contentDetails: string;
 
+  @Column({ name: 'lesson_review',nullable:true,type:"json" })
+  lessonReview: string;
+
   @Column({ name: 'sequence',nullable:true })
   sequence: string;
 
