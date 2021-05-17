@@ -7,7 +7,7 @@ import { User } from "./user";
 import { Section } from "./section";
 
 @Entity("sectionReviews")
-@Unique(["sectionId","userId"])
+//@Unique(["sectionId","userId"])
 export class SectionReview extends EntityBase{
 
 
