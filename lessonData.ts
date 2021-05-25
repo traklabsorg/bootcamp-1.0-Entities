@@ -32,6 +32,9 @@ export class LessonData extends EntityBase{
   @Column({name: 'total_points',nullable:true})
   totalPoints: number;
 
+  @Column({name: 'sequence_index',nullable:true})
+  sequenceIndex: number;
+
   @ManyToOne((type) => Lesson, lesson => lesson.lessonData, {
     onDelete: 'CASCADE',onUpdate: 'RESTRICT'
   })
