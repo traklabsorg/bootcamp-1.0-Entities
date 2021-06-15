@@ -29,7 +29,7 @@ export class CommunityBills extends EntityBase{
     totalCharges:number;
 
     @Column({name:'additional_details',type:"json",nullable:true})
-    additionalDetails:string;
+    additionalDetails:JSON;
 
     @Column({name:'is_paid',nullable:true})
     isPaid:boolean;
