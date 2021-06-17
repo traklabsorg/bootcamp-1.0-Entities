@@ -35,6 +35,9 @@ export class Community extends EntityBase {
   @Column({ name: "community_additional_data", nullable: true, type: "json" })
   communityAdditionalData: string;
 
+  @Column({name:"idp_config",nullable:true,type:"json"})
+  idpConfig:string;
+
   @Column({ name: "community_settings", nullable: true, type: "json",default: {} })
   communitySettings: string;
 
