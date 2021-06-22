@@ -1,6 +1,15 @@
-import { SubscriptionOrder } from './subscriptionOrder';
+import { SubscriptionOrder } from "./subscriptionOrder";
 import { EntityBase } from "./submodules/platform-3.0-Framework/EntityBase/EntityBase";
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  Unique,
+} from "typeorm";
 import { Community } from "./communities";
 import { EnrolledMeetings } from "./enrolledMeetings";
 import { GroupUser } from "./groupUser";
@@ -11,47 +20,50 @@ import { LiveContentUser } from "./liveContentUser";
 import { UserMeetingProvider } from "./userMeetingProvider";
 import { Payment } from "./payment";
 import { ChannelUser } from "./channelUser";
-import { SectionReview } from './sectionReview';
+import { SectionReview } from "./sectionReview";
+import { NuveproUser } from "./nuveproUser";
 
 @Entity("users")
 @Unique(["communityId", "userEmail"])
-
 export class User extends EntityBase {
-
-  @Column({ name: 'user_name', nullable: true })
+  @Column({ name: "user_name", nullable: true })
   userName: string;
 
-  @Column({ name: 'community_id', nullable: false })
+  @Column({ name: "community_id", nullable: false })
   communityId: number;
 
-  @Column({ name: 'user_type', nullable: true })
+  @Column({ name: "user_type", nullable: true })
   userType: string;
 
-  @Column({ name: 'user_details', nullable: true, type: "json" })
+  @Column({ name: "user_details", nullable: true, type: "json" })
   userDetails: string;
 
-  @Column({ name: 'user_settings', nullable: true, type: "json", default: {} })
+  @Column({ name: "user_settings", nullable: true, type: "json", default: {} })
   userSettings: string;
 
-  @Column({ name: 'activity_data', nullable: true, type: "json" })
+  @Column({ name: "activity_data", nullable: true, type: "json" })
   activityData: string;
 
-  @Column({ name: 'payment_info', nullable: true, type: "json" })
+  @Column({ name: "payment_info", nullable: true, type: "json" })
   paymentInfo: string;
 
-  @Column({ name: 'user_email', nullable: true, })
+  @Column({ name: "user_email", nullable: true })
   userEmail: string;
 
-  @Column({ name: 'user_image', nullable: true })
+  @Column({ name: "user_image", nullable: true })
   userImage: string;
 
-  @Column({ name: 'is_active', nullable: true })
+  @Column({ name: "is_active", nullable: true })
   isActive: string;
 
-  @Column({ name: 'last_Logon_date_time', nullable: true, type: "timestamp with time zone" })
+  @Column({
+    name: "last_Logon_date_time",
+    nullable: true,
+    type: "timestamp with time zone",
+  })
   lastLogonDateTime: Date;
 
-  @Column({ name: 'user_additional_details', nullable: true, type: "json" })
+  @Column({ name: "user_additional_details", nullable: true, type: "json" })
   userAdditionalDetails: string;
 
   @Column({ name: "external_user_id", nullable: true })
@@ -63,69 +75,104 @@ export class User extends EntityBase {
   @Column({ name: "external_tenant_user_app_id", nullable: true })
   externalTenantUserAppId: number;
 
-
-
-  @OneToMany((type) => LiveContentUser, liveContentUser => liveContentUser.user, {
-    onDelete: 'CASCADE', onUpdate: 'RESTRICT'
-  })
+  @OneToMany(
+    (type) => LiveContentUser,
+    (liveContentUser) => liveContentUser.user,
+    {
+      onDelete: "CASCADE",
+      onUpdate: "RESTRICT",
+    }
+  )
   liveContentUser: LiveContentUser[];
 
-  @OneToMany((type) => UserMeetingProvider, userMeetingProvider => userMeetingProvider.user, {
-    onDelete: 'CASCADE', onUpdate: 'RESTRICT'
-  })
-  userMeetingProvider: UserMeetingProvider[]
+  @OneToMany(
+    (type) => UserMeetingProvider,
+    (userMeetingProvider) => userMeetingProvider.user,
+    {
+      onDelete: "CASCADE",
+      onUpdate: "RESTRICT",
+    }
+  )
+  userMeetingProvider: UserMeetingProvider[];
 
   @OneToMany((type) => GroupUser, (groupUser) => groupUser.user, {
-    onDelete: 'CASCADE', onUpdate: 'RESTRICT'
+    onDelete: "CASCADE",
+    onUpdate: "RESTRICT",
   })
   groupUser: GroupUser[];
 
-  @OneToMany((type) => EnrolledMeetings, enrolledMeetings => enrolledMeetings.user, {
-    onDelete: 'CASCADE', onUpdate: 'RESTRICT'
-  })
+  @OneToMany(
+    (type) => EnrolledMeetings,
+    (enrolledMeetings) => enrolledMeetings.user,
+    {
+      onDelete: "CASCADE",
+      onUpdate: "RESTRICT",
+    }
+  )
   enrolledMeeting: EnrolledMeetings[];
 
-  @OneToMany((type) => LessonDataReview, lessonDataReviews => lessonDataReviews.user, {
-    onDelete: 'CASCADE', onUpdate: 'RESTRICT'
-  })
+  @OneToMany(
+    (type) => LessonDataReview,
+    (lessonDataReviews) => lessonDataReviews.user,
+    {
+      onDelete: "CASCADE",
+      onUpdate: "RESTRICT",
+    }
+  )
   lessonDataReview: LessonDataReview[];
 
-  @OneToMany((type) => LessonDataUser, lessonDataUser => lessonDataUser.user, {
-    onDelete: 'CASCADE', onUpdate: 'RESTRICT'
+  @OneToMany(
+    (type) => LessonDataUser,
+    (lessonDataUser) => lessonDataUser.user,
+    {
+      onDelete: "CASCADE",
+      onUpdate: "RESTRICT",
+    }
+  )
+  lessonDataUser: LessonDataUser[];
+
+  @OneToMany((type) => Payment, (payment) => payment.user, {
+    onDelete: "CASCADE",
+    onUpdate: "RESTRICT",
   })
-  lessonDataUser: LessonDataUser[]
+  payment: Payment[];
 
-  @OneToMany((type) => Payment, payment => payment.user, {
-    onDelete: 'CASCADE', onUpdate: 'RESTRICT'
+  @OneToMany((type) => LiveContent, (liveContent) => liveContent.user, {
+    onDelete: "CASCADE",
+    onUpdate: "RESTRICT",
   })
-  payment: Payment[]
+  liveContent: LiveContent[];
 
-
-  @OneToMany((type) => LiveContent, liveContent => liveContent.user, {
-    onDelete: 'CASCADE', onUpdate: 'RESTRICT'
-  })
-  liveContent: LiveContent[]
-
-
-  @OneToMany((type) => ChannelUser, channelUser => channelUser.user, {
-    onDelete: 'CASCADE', onUpdate: 'RESTRICT'
+  @OneToMany((type) => ChannelUser, (channelUser) => channelUser.user, {
+    onDelete: "CASCADE",
+    onUpdate: "RESTRICT",
   })
   channelUser: ChannelUser[];
 
-  @OneToMany((type) => SubscriptionOrder, subscriptionOrder => subscriptionOrder.user, {
-    onDelete: 'CASCADE', onUpdate: 'RESTRICT'
-  })
+  @OneToMany(
+    (type) => SubscriptionOrder,
+    (subscriptionOrder) => subscriptionOrder.user,
+    {
+      onDelete: "CASCADE",
+      onUpdate: "RESTRICT",
+    }
+  )
   subscriptionOrder: SubscriptionOrder[];
 
-  @OneToMany((type) => SectionReview, sectionReview => sectionReview.user, {
-    onDelete: 'CASCADE', onUpdate: 'RESTRICT'
+  @OneToMany((type) => SectionReview, (sectionReview) => sectionReview.user, {
+    onDelete: "CASCADE",
+    onUpdate: "RESTRICT",
   })
   sectionReview: SectionReview[];
 
-  @ManyToOne((type) => Community, community => community.user, {
-    onDelete: 'CASCADE', onUpdate: 'RESTRICT'
+  @ManyToOne((type) => Community, (community) => community.user, {
+    onDelete: "CASCADE",
+    onUpdate: "RESTRICT",
   })
-  @JoinColumn({ name: 'community_id' })
+  @JoinColumn({ name: "community_id" })
   community: Community;
 
+  @OneToOne(() => NuveproUser)
+  @JoinColumn({ name: "nuvepro_user_id" })
+  nuveproUser: NuveproUser;
 }
